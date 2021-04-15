@@ -1,8 +1,10 @@
 .profile__edit-button {
-  background: url(../../../images/logo/profile-edit-button-pencil.svg) center no-repeat;
+  background: url(../../../images/logo/profile-edit-button-pencil.svg) center / 8px 8px no-repeat;
   width: 18px;
   height: 18px;
   border: 1px solid #fff;
   align-self: center;
   padding: 0;
 }
+
+/*todo: icon size 10x10 for monitor*/
