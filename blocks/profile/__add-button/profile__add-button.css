@@ -1,3 +1,8 @@
 .profile__add-button {
+  background: url(../../../images/logo/profile-add-button-plus.svg) center no-repeat;
   display: block;
+  width: 100%;
+  border: 2px solid #fff;
+  height: 50px;
+  color: #fff;
 }
