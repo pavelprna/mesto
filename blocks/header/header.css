@@ -9,3 +9,5 @@ header::after {
   height: 31px;
   opacity: .7;
 }
+
+/*todo: add rgba, remove ::after*/
