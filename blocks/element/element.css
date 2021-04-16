@@ -6,6 +6,7 @@
           'title like';
   grid-template-columns: 1fr min-content;
   grid-template-rows: 1fr minmax(80px, auto);
+  align-items: center;
   column-gap: 20px;
   border-radius: 10px;
 }
