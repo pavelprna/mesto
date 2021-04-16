@@ -3,8 +3,7 @@
   line-height: 1.21;
   grid-column: 1 / -1;
   justify-self: center;
-  margin: 0 0 36px;
+  margin: 14px 0 36px;
+  max-width: 336px;
+  text-align: center;
 }
-
-/*todo: center text*/
-/*todo: set max-width*/
