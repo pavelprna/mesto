@@ -3,4 +3,6 @@
   max-width: 1280px;
   min-width: 320px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 19px [center] 1fr 19px;
 }
