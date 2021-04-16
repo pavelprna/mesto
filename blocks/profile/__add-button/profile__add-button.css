@@ -9,4 +9,9 @@
   color: #fff;
 }
 
+.profile__add-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
 /*todo: icon size 22x22 for monitor*/
