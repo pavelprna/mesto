@@ -5,3 +5,9 @@
   object-fit: cover;
   margin: 0 0 26px;
 }
+
+@media (min-width: 768px) {
+  .profile__avatar {
+    margin: 0;
+  }
+}

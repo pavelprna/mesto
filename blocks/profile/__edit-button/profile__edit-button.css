@@ -12,4 +12,11 @@
   cursor: pointer;
 }
 
+@media (min-width: 768px) {
+  .profile__edit-button {
+    background-size: 10px 10px;
+    width: 24px;
+    height: 24px;
+  }
+}
 /*todo: icon size 10x10 for monitor*/

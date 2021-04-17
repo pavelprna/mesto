@@ -1,5 +1,12 @@
 .profile__info {
   display: grid;
-  grid-template-columns: 1fr [profile-center] max-content [profile-right] 1fr;
+  grid-template-columns: 1fr [profile-info-title] max-content 1fr;
   column-gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .profile__info {
+    grid-template-columns: 12px [profile-info-title] max-content 1fr;
+    column-gap: 18px;
+  }
 }
