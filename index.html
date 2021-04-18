@@ -24,10 +24,10 @@
                class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button button"></button>
+            <button type="button" class="profile__edit-button button"></button>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__add-button button"></button>
+          <button type="button" class="profile__add-button button"></button>
         </section>
 
         <section class="elements">
@@ -37,7 +37,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Каир</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
           <article class="element">
             <div class="element__square-container">
@@ -45,7 +45,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Острова Гили Траванган</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
           <article class="element">
             <div class="element__square-container">
@@ -53,7 +53,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Голд-Кост</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
           <article class="element">
             <div class="element__square-container">
@@ -61,7 +61,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Гуанахуанто</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
           <article class="element">
             <div class="element__square-container">
@@ -69,7 +69,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Сан-Франциско</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
           <article class="element">
             <div class="element__square-container">
@@ -77,7 +77,7 @@
                    class="element__image">
             </div>
             <h2 class="element__title">Венеция</h2>
-            <button class="element__like button"></button>
+            <button type="button" class="element__like button"></button>
           </article>
         </section>
 
@@ -86,13 +86,15 @@
       <footer class="footer">&copy; 2020 Mesto Russia</footer>
 
       <div class="popup">
-        <form action="" class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" name="nameInput" value="" class="popup__input">
-          <input type="text" name="jobInput" value="" class="popup__input">
-          <button type="submit" class="popup__button">Сохранить</button>
-          <button type="reset" class="popup__close button"></button>
-        </form>
+        <div class="popup__container">
+          <button type="button" class="popup__close button"></button>
+          <form class="form" name="profile-form">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" name="name-input" class="popup__input">
+            <input type="text" name="job-input" class="popup__input">
+            <button type="submit" class="popup__button">Сохранить</button>
+          </form>
+        </div>
       </div>
 
     </div>

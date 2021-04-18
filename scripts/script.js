@@ -1,7 +1,8 @@
 let popup = document.querySelector('.popup');
 let editProfileButton = document.querySelector('.profile__edit-button');
-let nameInput = popup.querySelector('.popup__input[name = nameInput]');
-let jobInput = popup.querySelector('.popup__input[name = jobInput]');
+let closePopupButton = popup.querySelector('.popup__close');
+let nameInput = popup.querySelector('.popup__input[name = name-input]');
+let jobInput = popup.querySelector('.popup__input[name = job-input]');
 let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
@@ -23,5 +24,5 @@ function formSubmitHandler(evt) {
 }
 
 editProfileButton.addEventListener('click', togglePopup);
-popup.addEventListener('reset', togglePopup);
+closePopupButton.addEventListener('click', togglePopup);
 popup.addEventListener('submit', formSubmitHandler);
