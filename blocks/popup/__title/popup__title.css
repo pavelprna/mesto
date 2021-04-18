@@ -2,5 +2,11 @@
   font-size: 18px;
   line-height: 1.21;
   font-weight: 900;
-  margin: 0 0 58px;
+  margin: 0 0 66px;
+}
+
+@media (min-width: 768px) {
+  .popup__title {
+    font-size: 24px;
+  }
 }
