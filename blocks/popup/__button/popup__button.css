@@ -1,6 +1,6 @@
 .popup__button {
   color: #fff;
-  background: #000;
+  background: rgba(0, 0, 0, 1);
   border: none;
   border-radius: 2px;
   margin: 45px 0 0;
@@ -10,6 +10,10 @@
   height: 46px;
   font-size: 14px;
   line-height: 1.21;
+}
+
+.popup__button:hover {
+  background: rgba(0, 0, 0, .8);
 }
 
 @media (min-width: 768px) {

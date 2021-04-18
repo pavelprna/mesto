@@ -9,10 +9,6 @@
   right: 0;
 }
 
-.popup__close:hover {
-  opacity: .6;
-}
-
 @media (min-width: 768px) {
   .popup__close {
     background-size: 34px 34px;
