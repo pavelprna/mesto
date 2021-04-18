@@ -10,7 +10,7 @@
 
 @media (min-width: 768px) {
   .profile__subtitle {
-    margin: 16px 0 0;
+    margin: 10px 0 0;
     grid-column: profile-info-title;
     font-size: 18px;
     line-height: 1.22;
