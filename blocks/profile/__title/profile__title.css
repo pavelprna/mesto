@@ -6,6 +6,9 @@
   grid-column: profile-info-title;
   text-align: center;
   max-width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
