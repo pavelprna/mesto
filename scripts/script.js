@@ -7,7 +7,7 @@ let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
 function togglePopup(evt) {
-    if (evt && evt.target === evt.currentTarget) {
+    if (evt !== undefined && evt.target === evt.currentTarget) {
         nameInput.value = name.textContent;
         jobInput.value = job.textContent;
     }
