@@ -5,11 +5,11 @@ let jobInput = popup.querySelector('.popup__input[name = jobInput]');
 let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
-
-function togglePopup() {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
-
+function togglePopup(evt) {
+    if (evt && evt.target === evt.currentTarget) {
+        nameInput.value = name.textContent;
+        jobInput.value = job.textContent;
+    }
     popup.classList.toggle('popup_opened');
 }
 
