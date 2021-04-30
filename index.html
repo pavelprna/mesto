@@ -32,66 +32,6 @@
 
         <section class="elements">
           <ul class="elements__list">
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-cairo.jpg" alt="Каир"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Каир</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-gili-trawangan.jpg" alt="Острова Гили Траванган"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Острова Гили Траванган</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-gold-coast.jpg" alt="Голд-Кост"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Голд-Кост</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-guanajuato.jpg" alt="Гуанахуанто"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Гуанахуанто</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-san-francisco.jpg" alt="Сан-Франциско"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Сан-Франциско</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-venice.jpg" alt="Венеция"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Венеция</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
           </ul>
         </section>
 
@@ -115,7 +55,18 @@
 
   </div>
 
-  <script src="./scripts/script.js"></script>
+  <template id="element">
+    <li class="elements__list-item">
+      <article class="element">
+        <div class="element__square-container">
+          <img class="element__image">
+        </div>
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like button"></button>
+      </article>
+    </li>
+  </template>
 
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
