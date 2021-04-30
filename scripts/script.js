@@ -6,6 +6,33 @@ let jobInput = popup.querySelector('.form__input[name = job-input]');
 let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
+const initialCards = [
+    {
+        name: 'Каир',
+        link: './images/element-cairo.jpg',
+    },
+    {
+        name: 'Острова Гили Траванган',
+        link: './images/element-gili-trawangan.jpg',
+    },
+    {
+        name: 'Голд-Кост',
+        link: './images/element-gold-coast.jpg',
+    },
+    {
+        name: 'Гуанахуанто',
+        link: './images/element-guanajuato.jpg',
+    },
+    {
+        name: 'Сан-Франциско',
+        link: './images/element-san-francisco.jpg',
+    },
+    {
+        name: 'Венеция',
+        link: './images/element-venice.jpg',
+    },
+];
+
 function togglePopup() {
     if (!popup.classList.contains('popup_opened')) {
         nameInput.value = name.textContent;
