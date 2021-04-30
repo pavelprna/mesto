@@ -6,7 +6,10 @@ let jobInput = popup.querySelector('.form__input[name = job-input]');
 let name = document.querySelector('.profile__title');
 let job = document.querySelector('.profile__subtitle');
 
-const initialCards = [
+const elementTemplate = document.querySelector('#element').content;
+const elementsList = document.querySelector('.elements__list');
+
+const initialElements = [
     {
         name: 'Каир',
         link: './images/element-cairo.jpg',
@@ -32,6 +35,16 @@ const initialCards = [
         link: './images/element-venice.jpg',
     },
 ];
+
+
+initialElements.forEach((element) => {
+    const elementItem = elementTemplate.querySelector('.elements__list-item').cloneNode(true);
+    elementItem.querySelector('.element__image').src = element.link;
+    elementItem.querySelector('.element__image').alt = element.name;
+    elementItem.querySelector('.element__title').textContent = element.name;
+    elementsList.append(elementItem);
+});
+
 
 function togglePopup() {
     if (!popup.classList.contains('popup_opened')) {
