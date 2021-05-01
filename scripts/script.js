@@ -12,15 +12,12 @@ const closeAddNewCardButton = addNewCardPopup.querySelector('.popup__close');
 const placeNameInput = addNewCardPopup.querySelector('.form__input[name = place-name-input]');
 const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-link-input]');
 
-const likeButtons = document.querySelectorAll('.element__like');
-
-likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener('click', toggleLike);
-});
-
 function toggleLike(evt) {
     evt.target.classList.toggle('element__like_active');
-    console.log('Like!');
+}
+
+function removeCard(evt) {
+    evt.target.closest('.elements__list-item').remove();
 }
 
 const elementTemplate = document.querySelector('#element').content;
@@ -63,6 +60,7 @@ function renderElement(element) {
     elementItem.querySelector('.element__title').textContent = element.name;
     elementsList.prepend(elementItem);
     elementItem.querySelector('.element__like').addEventListener('click', toggleLike);
+    elementItem.querySelector('.element__remove-button').addEventListener('click', removeCard);
 }
 
 function togglePopup(popupSelector) {
