@@ -32,66 +32,6 @@
 
         <section class="elements">
           <ul class="elements__list">
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-cairo.jpg" alt="Каир"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Каир</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-gili-trawangan.jpg" alt="Острова Гили Траванган"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Острова Гили Траванган</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-gold-coast.jpg" alt="Голд-Кост"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Голд-Кост</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-guanajuato.jpg" alt="Гуанахуанто"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Гуанахуанто</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-san-francisco.jpg" alt="Сан-Франциско"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Сан-Франциско</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
-            <li class="elements__list-item">
-              <article class="element">
-                <div class="element__square-container">
-                  <img src="./images/element-venice.jpg" alt="Венеция"
-                       class="element__image">
-                </div>
-                <h2 class="element__title">Венеция</h2>
-                <button type="button" class="element__like button"></button>
-              </article>
-            </li>
           </ul>
         </section>
 
@@ -99,10 +39,10 @@
 
       <footer class="footer">&copy; 2020 Mesto Russia</footer>
 
-      <div class="popup">
+      <div class="popup popup_content_edit-profile">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="profile-form">
+          <form class="form" name="edit-profile-form">
             <h2 class="form__title">Редактировать профиль</h2>
             <input type="text" name="name-input" class="form__input">
             <input type="text" name="job-input" class="form__input">
@@ -111,11 +51,35 @@
         </div>
       </div>
 
+      <div class="popup popup_content_new-card">
+        <div class="popup__container">
+          <button type="button" class="popup__close button"></button>
+          <form class="form" name="add-card-form">
+            <h2 class="form__title">Новое место</h2>
+            <input type="text" name="place-name-input" placeholder="Название" class="form__input">
+            <input type="text" name="place-link-input" placeholder="Ссылка на картинку" class="form__input">
+            <button type="submit" class="form__button">Создать</button>
+          </form>
+        </div>
+      </div>
+
     </div>
 
   </div>
 
-  <script src="./scripts/script.js"></script>
+  <template id="element">
+    <li class="elements__list-item">
+      <article class="element">
+        <div class="element__square-container">
+          <img class="element__image">
+          <button class="element__remove-button button"></button>
+        </div>
+        <h2 class="element__title"></h2>
+        <button type="button" class="element__like button"></button>
+      </article>
+    </li>
+  </template>
 
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
