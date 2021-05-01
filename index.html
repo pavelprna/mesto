@@ -39,14 +39,26 @@
 
       <footer class="footer">&copy; 2020 Mesto Russia</footer>
 
-      <div class="popup">
+      <div class="popup popup_content_edit-profile">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="profile-form">
+          <form class="form" name="edit-profile-form">
             <h2 class="form__title">Редактировать профиль</h2>
             <input type="text" name="name-input" class="form__input">
             <input type="text" name="job-input" class="form__input">
             <button type="submit" class="form__button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_content_new-card">
+        <div class="popup__container">
+          <button type="button" class="popup__close button"></button>
+          <form class="form" name="add-card-form">
+            <h2 class="form__title">Новое место</h2>
+            <input type="text" name="place-name-input" placeholder="Название" class="form__input">
+            <input type="text" name="place-link-input" placeholder="Ссылка на картинку" class="form__input">
+            <button type="submit" class="form__button">Создать</button>
           </form>
         </div>
       </div>
