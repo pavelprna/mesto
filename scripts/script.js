@@ -19,11 +19,12 @@ const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
 
 initialElements.forEach((element) => {
-    renderElement(element);
+    elementsList.prepend(createElement(element));
 });
 
-function renderElement(element) {
+function createElement(element) {
     const elementItem = elementTemplate.querySelector('.elements__list-item').cloneNode(true);
+
     const elementImage = elementItem.querySelector('.element__image');
     const elementTitle = elementItem.querySelector('.element__title');
     elementImage.src = element.link;
@@ -71,7 +72,7 @@ function addNewCardSubmitHandler(evt) {
     const newPlace = {};
     newPlace.name = placeNameInput.value;
     newPlace.link = placeLinkInput.value;
-    renderElement(newPlace);
+    elementsList.prepend(createElement(newPlace));
     togglePopup('.popup_content_new-card')
 }
 
