@@ -17,32 +17,6 @@ const closeViewFullImagePopup = viewFullImagePopup.querySelector('.popup__close'
 
 const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
-const initialElements = [
-    {
-        name: 'Каир',
-        link: './images/element-cairo.jpg',
-    },
-    {
-        name: 'Острова Гили Траванган',
-        link: './images/element-gili-trawangan.jpg',
-    },
-    {
-        name: 'Голд-Кост',
-        link: './images/element-gold-coast.jpg',
-    },
-    {
-        name: 'Гуанахуанто',
-        link: './images/element-guanajuato.jpg',
-    },
-    {
-        name: 'Сан-Франциско',
-        link: './images/element-san-francisco.jpg',
-    },
-    {
-        name: 'Венеция',
-        link: './images/element-venice.jpg',
-    },
-];
 
 initialElements.forEach((element) => {
     elementsList.prepend(createElement(element));
@@ -50,15 +24,18 @@ initialElements.forEach((element) => {
 
 function createElement(element) {
     const elementItem = elementTemplate.querySelector('.elements__list-item').cloneNode(true);
-    elementItem.querySelector('.element__image').src = element.link;
-    elementItem.querySelector('.element__image').alt = element.name;
-    elementItem.querySelector('.element__title').textContent = element.name;
+
+    const elementImage = elementItem.querySelector('.element__image');
+    const elementTitle = elementItem.querySelector('.element__title');
+    elementImage.src = element.link;
+    elementImage.alt = element.name;
+    elementTitle.textContent = element.name;
+
+    elementsList.prepend(elementItem);
 
     elementItem.querySelector('.element__like').addEventListener('click', toggleLike);
     elementItem.querySelector('.element__remove-button').addEventListener('click', removeCard);
-    elementItem.querySelector('.element__image').addEventListener('click', viewElementImage);
-
-    return elementItem;
+    elementImage.addEventListener('click', viewElementImage);
 }
 
 function togglePopup(popupSelector) {
@@ -75,8 +52,9 @@ function removeCard(evt) {
 }
 
 function viewElementImage(evt) {
-    viewFullImagePopup.querySelector('.view-fullscreen__image').src = evt.target.src;
-    viewFullImagePopup.querySelector('.view-fullscreen__image').alt = evt.target.alt;
+    const fullScreenImage = viewFullImagePopup.querySelector('.view-fullscreen__image');
+    fullScreenImage.src = evt.target.src;
+    fullScreenImage.alt = evt.target.alt;
     viewFullImagePopup.querySelector('.view-fullscreen__caption').textContent = evt.target.alt;
 
     togglePopup('.popup_content_place-image');
