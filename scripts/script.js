@@ -15,26 +15,6 @@ const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-
 const viewFullImagePopup = document.querySelector('.popup_content_place-image');
 const closeViewFullImagePopup = viewFullImagePopup.querySelector('.popup__close');
 
-function toggleLike(evt) {
-    evt.target.classList.toggle('element__like_active');
-}
-
-function removeCard(evt) {
-    evt.target.closest('.elements__list-item').remove();
-}
-
-function viewElementImage(evt) {
-    viewFullImagePopup.querySelector('.view-fullscreen__image').src = evt.target.src;
-    viewFullImagePopup.querySelector('.view-fullscreen__image').alt = evt.target.alt;
-    viewFullImagePopup.querySelector('.view-fullscreen__caption').alt = evt.target.alt;
-
-    togglePopup('.popup_content_place-image');
-}
-
-closeViewFullImagePopup.addEventListener('click', () => {
-    togglePopup('.popup_content_place-image');
-})
-
 const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
 const initialElements = [
@@ -84,6 +64,22 @@ function togglePopup(popupSelector) {
     currentPopup.classList.toggle('popup_opened');
 }
 
+function toggleLike(evt) {
+    evt.target.classList.toggle('element__like_active');
+}
+
+function removeCard(evt) {
+    evt.target.closest('.elements__list-item').remove();
+}
+
+function viewElementImage(evt) {
+    viewFullImagePopup.querySelector('.view-fullscreen__image').src = evt.target.src;
+    viewFullImagePopup.querySelector('.view-fullscreen__image').alt = evt.target.alt;
+    viewFullImagePopup.querySelector('.view-fullscreen__caption').alt = evt.target.alt;
+
+    togglePopup('.popup_content_place-image');
+}
+
 function editProfileFormSubmitHandler(evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
@@ -105,9 +101,6 @@ editProfileButton.addEventListener('click', () => {
     jobInput.value = job.textContent;
     togglePopup('.popup_content_edit-profile');
 });
-closeEditProfilePopupButton.addEventListener('click', () => {
-    togglePopup('.popup_content_edit-profile');
-});
 editProfilePopup.addEventListener('submit', editProfileFormSubmitHandler);
 
 addNewCardButton.addEventListener('click', () => {
@@ -115,7 +108,14 @@ addNewCardButton.addEventListener('click', () => {
     placeLinkInput.value = '';
     togglePopup('.popup_content_new-card');
 });
+addNewCardPopup.addEventListener('submit', addNewCardSubmitHandler);
+
+closeEditProfilePopupButton.addEventListener('click', () => {
+    togglePopup('.popup_content_edit-profile');
+});
 closeAddNewCardButton.addEventListener('click', () => {
     togglePopup('.popup_content_new-card');
-})
-addNewCardPopup.addEventListener('submit', addNewCardSubmitHandler);
+});
+closeViewFullImagePopup.addEventListener('click', () => {
+    togglePopup('.popup_content_place-image');
+});
