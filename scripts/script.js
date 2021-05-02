@@ -17,32 +17,6 @@ const closeViewFullImagePopup = viewFullImagePopup.querySelector('.popup__close'
 
 const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
-const initialElements = [
-    {
-        name: 'Каир',
-        link: './images/element-cairo.jpg',
-    },
-    {
-        name: 'Острова Гили Траванган',
-        link: './images/element-gili-trawangan.jpg',
-    },
-    {
-        name: 'Голд-Кост',
-        link: './images/element-gold-coast.jpg',
-    },
-    {
-        name: 'Гуанахуанто',
-        link: './images/element-guanajuato.jpg',
-    },
-    {
-        name: 'Сан-Франциско',
-        link: './images/element-san-francisco.jpg',
-    },
-    {
-        name: 'Венеция',
-        link: './images/element-venice.jpg',
-    },
-];
 
 initialElements.forEach((element) => {
     renderElement(element);
