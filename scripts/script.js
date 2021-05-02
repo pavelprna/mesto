@@ -111,6 +111,8 @@ closeEditProfilePopupButton.addEventListener('click', () => {
 editProfilePopup.addEventListener('submit', editProfileFormSubmitHandler);
 
 addNewCardButton.addEventListener('click', () => {
+    placeNameInput.value = '';
+    placeLinkInput.value = '';
     togglePopup('.popup_content_new-card');
 });
 closeAddNewCardButton.addEventListener('click', () => {
