@@ -44,8 +44,8 @@
           <button type="button" class="popup__close button"></button>
           <form class="form" name="edit-profile-form">
             <h2 class="form__title">Редактировать профиль</h2>
-            <input type="text" name="name-input" class="form__input">
-            <input type="text" name="job-input" class="form__input">
+            <input type="text" name="name-input" class="form__input" required>
+            <input type="text" name="job-input" class="form__input" required>
             <button type="submit" class="form__button">Сохранить</button>
           </form>
         </div>
@@ -56,8 +56,8 @@
           <button type="button" class="popup__close button"></button>
           <form class="form" name="add-card-form">
             <h2 class="form__title">Новое место</h2>
-            <input type="text" name="place-name-input" placeholder="Название" class="form__input">
-            <input type="text" name="place-link-input" placeholder="Ссылка на картинку" class="form__input">
+            <input type="text" name="place-name-input" placeholder="Название" class="form__input" required>
+            <input type="url" name="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
             <button type="submit" class="form__button">Создать</button>
           </form>
         </div>
