@@ -12,16 +12,28 @@ const closeAddNewCardButton = addNewCardPopup.querySelector('.popup__close');
 const placeNameInput = addNewCardPopup.querySelector('.form__input[name = place-name-input]');
 const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-link-input]');
 
-const likeButtons = document.querySelectorAll('.element__like');
-
-likeButtons.forEach((likeButton) => {
-    likeButton.addEventListener('click', toggleLike);
-});
+const viewFullImagePopup = document.querySelector('.popup_content_place-image');
+const closeViewFullImagePopup = viewFullImagePopup.querySelector('.popup__close');
 
 function toggleLike(evt) {
     evt.target.classList.toggle('element__like_active');
-    console.log('Like!');
 }
+
+function removeCard(evt) {
+    evt.target.closest('.elements__list-item').remove();
+}
+
+function viewElementImage(evt) {
+    viewFullImagePopup.querySelector('.view-fullscreen__image').src = evt.target.src;
+    viewFullImagePopup.querySelector('.view-fullscreen__image').alt = evt.target.alt;
+    viewFullImagePopup.querySelector('.view-fullscreen__caption').alt = evt.target.alt;
+
+    togglePopup('.popup_content_place-image');
+}
+
+closeViewFullImagePopup.addEventListener('click', () => {
+    togglePopup('.popup_content_place-image');
+})
 
 const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
@@ -63,6 +75,8 @@ function renderElement(element) {
     elementItem.querySelector('.element__title').textContent = element.name;
     elementsList.prepend(elementItem);
     elementItem.querySelector('.element__like').addEventListener('click', toggleLike);
+    elementItem.querySelector('.element__remove-button').addEventListener('click', removeCard);
+    elementItem.querySelector('.element__image').addEventListener('click', viewElementImage);
 }
 
 function togglePopup(popupSelector) {
