@@ -31,16 +31,15 @@ function createElement(element) {
     elementImage.alt = element.name;
     elementTitle.textContent = element.name;
 
-    elementsList.prepend(elementItem);
-
     elementItem.querySelector('.element__like').addEventListener('click', toggleLike);
     elementItem.querySelector('.element__remove-button').addEventListener('click', removeCard);
     elementImage.addEventListener('click', viewElementImage);
+
+    return elementItem;
 }
 
-function togglePopup(popupSelector) {
-    const currentPopup = document.querySelector(`${popupSelector}`);
-    currentPopup.classList.toggle('popup_opened');
+function togglePopup(popup) {
+    popup.classList.toggle('popup_opened');
 }
 
 function toggleLike(evt) {
@@ -57,14 +56,14 @@ function viewElementImage(evt) {
     fullScreenImage.alt = evt.target.alt;
     viewFullImagePopup.querySelector('.view-fullscreen__caption').textContent = evt.target.alt;
 
-    togglePopup('.popup_content_place-image');
+    togglePopup(viewFullImagePopup);
 }
 
 function editProfileFormSubmitHandler(evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    togglePopup('.popup_content_edit-profile');
+    togglePopup(editProfilePopup);
 }
 
 function addNewCardSubmitHandler(evt) {
@@ -73,29 +72,29 @@ function addNewCardSubmitHandler(evt) {
     newPlace.name = placeNameInput.value;
     newPlace.link = placeLinkInput.value;
     elementsList.prepend(createElement(newPlace));
-    togglePopup('.popup_content_new-card')
+    togglePopup(addNewCardPopup)
 }
 
 editProfileButton.addEventListener('click', () => {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-    togglePopup('.popup_content_edit-profile');
+    togglePopup(editProfilePopup);
 });
 editProfilePopup.addEventListener('submit', editProfileFormSubmitHandler);
 
 addNewCardButton.addEventListener('click', () => {
     placeNameInput.value = '';
     placeLinkInput.value = '';
-    togglePopup('.popup_content_new-card');
+    togglePopup(addNewCardPopup);
 });
 addNewCardPopup.addEventListener('submit', addNewCardSubmitHandler);
 
 closeEditProfilePopupButton.addEventListener('click', () => {
-    togglePopup('.popup_content_edit-profile');
+    togglePopup(editProfilePopup);
 });
 closeAddNewCardButton.addEventListener('click', () => {
-    togglePopup('.popup_content_new-card');
+    togglePopup(addNewCardPopup);
 });
 closeViewFullImagePopup.addEventListener('click', () => {
-    togglePopup('.popup_content_place-image');
+    togglePopup(viewFullImagePopup);
 });
