@@ -75,7 +75,7 @@ function removeCard(evt) {
 function viewElementImage(evt) {
     viewFullImagePopup.querySelector('.view-fullscreen__image').src = evt.target.src;
     viewFullImagePopup.querySelector('.view-fullscreen__image').alt = evt.target.alt;
-    viewFullImagePopup.querySelector('.view-fullscreen__caption').alt = evt.target.alt;
+    viewFullImagePopup.querySelector('.view-fullscreen__caption').textContent = evt.target.alt;
 
     togglePopup('.popup_content_place-image');
 }
