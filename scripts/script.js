@@ -45,18 +45,20 @@ const initialElements = [
 ];
 
 initialElements.forEach((element) => {
-    renderElement(element);
+    elementsList.prepend(createElement(element));
 });
 
-function renderElement(element) {
+function createElement(element) {
     const elementItem = elementTemplate.querySelector('.elements__list-item').cloneNode(true);
     elementItem.querySelector('.element__image').src = element.link;
     elementItem.querySelector('.element__image').alt = element.name;
     elementItem.querySelector('.element__title').textContent = element.name;
-    elementsList.prepend(elementItem);
+
     elementItem.querySelector('.element__like').addEventListener('click', toggleLike);
     elementItem.querySelector('.element__remove-button').addEventListener('click', removeCard);
     elementItem.querySelector('.element__image').addEventListener('click', viewElementImage);
+
+    return elementItem;
 }
 
 function togglePopup(popupSelector) {
@@ -92,7 +94,7 @@ function addNewCardSubmitHandler(evt) {
     const newPlace = {};
     newPlace.name = placeNameInput.value;
     newPlace.link = placeLinkInput.value;
-    renderElement(newPlace);
+    elementsList.prepend(createElement(newPlace));
     togglePopup('.popup_content_new-card')
 }
 
