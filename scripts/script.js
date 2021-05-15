@@ -60,15 +60,16 @@ function clickHandler(evt) {
     if (evt.target === evt.currentTarget) closeOpenedPopup();
 }
 
-function togglePopup(popup) {
-    if (!popup.classList.contains('popup_opened')) {
-        document.addEventListener('keydown', closePopupByEsc);
-        popup.addEventListener('click', clickHandler);
-    } else {
-        document.removeEventListener('keydown', closePopupByEsc);
-        popup.removeEventListener('click', clickHandler);
-    }
-    popup.classList.toggle('popup_opened');
+function openPopup(popup) {
+    document.addEventListener('keydown', closePopupByEsc);
+    popup.addEventListener('click', clickHandler);
+    popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+    document.removeEventListener('keydown', closePopupByEsc);
+    popup.removeEventListener('click', clickHandler);
+    popup.classList.remove('popup_opened');
 }
 
 function toggleLike(evt) {
