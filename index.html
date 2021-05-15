@@ -13,15 +13,13 @@
     <div class="page">
 
       <header class="header">
-        <img src="./images/logo/logo.svg" alt="Место"
-             class="header__logo">
+        <img src="./images/logo/logo.svg" alt="Место" class="header__logo">
       </header>
 
       <main class="content">
 
         <section class="profile">
-          <img src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто"
-               class="profile__avatar">
+          <img src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button button"></button>
@@ -31,8 +29,7 @@
         </section>
 
         <section class="elements">
-          <ul class="elements__list">
-          </ul>
+          <ul class="elements__list"></ul>
         </section>
 
       </main>
@@ -42,11 +39,17 @@
       <div class="popup popup_content_edit-profile">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="edit-profile-form">
+          <form class="form" name="edit-profile-form" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
-            <input type="text" name="name-input" class="form__input" required>
-            <input type="text" name="job-input" class="form__input" required>
-            <button type="submit" class="form__button">Сохранить</button>
+            <label for="name-input" class="form__label">
+              <input type="text" name="name-input" id="name-input" class="form__input" minlength="2" maxlength="40" required>
+              <span class="form__input-error form__input-error_visible name-input-error"></span>
+            </label>
+            <label for="job-input" class="form__label">
+              <input type="text" name="job-input" id="job-input" class="form__input" minlength="2" maxlength="200" required>
+              <span class="form__input-error form__input-error_visible job-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit-button button">Сохранить</button>
           </form>
         </div>
       </div>
@@ -54,11 +57,17 @@
       <div class="popup popup_content_new-card">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="add-card-form">
+          <form class="form" name="add-card-form" novalidate>
             <h2 class="form__title">Новое место</h2>
-            <input type="text" name="place-name-input" placeholder="Название" class="form__input" required>
-            <input type="url" name="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
-            <button type="submit" class="form__button">Создать</button>
+            <label for="place-name-input" class="form__label">
+              <input type="text" name="place-name-input" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
+              <span class="form__input-error form__input-error_visible place-name-input-error"></span>
+            </label>
+            <label for="place-link-input" class="form__label">
+              <input type="url" name="place-link-input" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
+              <span class="form__input-error form__input-error_visible place-link-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit-button button">Создать</button>
           </form>
         </div>
       </div>
@@ -67,7 +76,7 @@
         <div class="popup__container popup__container_content_place-image">
           <button type="button" class="popup__close button"></button>
           <figure class="view-fullscreen">
-            <img src="./images/element-venice.jpg" alt="Венеция" class="view-fullscreen__image">
+            <img src="" alt="" class="view-fullscreen__image">
             <figcaption class="view-fullscreen__caption">Венеция</figcaption>
           </figure>
         </div>
@@ -81,7 +90,7 @@
     <li class="elements__list-item">
       <article class="element">
         <div class="element__square-container">
-          <img class="element__image">
+          <img src='' alt='' class="element__image">
           <button class="element__remove-button button"></button>
         </div>
         <h2 class="element__title"></h2>
@@ -91,6 +100,7 @@
   </template>
 
   <script src="./scripts/initial.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
