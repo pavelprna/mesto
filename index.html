@@ -39,12 +39,16 @@
       <div class="popup popup_content_edit-profile">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="edit-profile-form">
+          <form class="form" name="edit-profile-form" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
-            <input type="text" name="name-input" id="name-input" class="form__input" minlength="2" maxlength="40" required>
-            <span class="form__input_type_error name-input-error"></span>
-            <input type="text" name="job-input" id="job-input" class="form__input" minlength="2" maxlength="200" required>
-            <span class="form__input_type_error name-input-error"></span>
+            <label for="name-input" class="form__label">
+              <input type="text" name="name-input" id="name-input" class="form__input" minlength="2" maxlength="40" required>
+              <span class="form__input_type_error name-input-error"></span>
+            </label>
+            <label for="job-input" class="form__label">
+              <input type="text" name="job-input" id="job-input" class="form__input" minlength="2" maxlength="200" required>
+              <span class="form__input_type_error name-input-error"></span>
+            </label>
             <button type="submit" class="form__submit-button button">Сохранить</button>
           </form>
         </div>
@@ -53,12 +57,16 @@
       <div class="popup popup_content_new-card">
         <div class="popup__container">
           <button type="button" class="popup__close button"></button>
-          <form class="form" name="add-card-form">
+          <form class="form" name="add-card-form" novalidate>
             <h2 class="form__title">Новое место</h2>
-            <input type="text" name="place-name-input" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
-            <span class="form__input_type_error place-name-input-error"></span>
-            <input type="url" name="place-link-input" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
-            <span class="form__input_type_error place-link-input-error"></span>
+            <label for="place-name-input" class="form__label">
+              <input type="text" name="place-name-input" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
+              <span class="form__input_type_error place-name-input-error"></span>
+            </label>
+            <label for="place-link-input" class="form__label">
+              <input type="url" name="place-link-input" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
+              <span class="form__input_type_error place-link-input-error"></span>
+            </label>
             <button type="submit" class="form__submit-button button">Создать</button>
           </form>
         </div>
@@ -82,7 +90,7 @@
     <li class="elements__list-item">
       <article class="element">
         <div class="element__square-container">
-          <img class="element__image">
+          <img src='' alt='' class="element__image">
           <button class="element__remove-button button"></button>
         </div>
         <h2 class="element__title"></h2>
