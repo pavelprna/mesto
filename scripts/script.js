@@ -49,7 +49,7 @@ function createElement(element) {
 
 function closeOpenedPopup() {
     const openedPopup = document.querySelector('.popup_opened');
-    togglePopup(openedPopup);
+    closePopup(openedPopup);
 }
 
 function closePopupByEsc(evt) {
@@ -86,14 +86,14 @@ function viewElementImage(evt) {
     fullScreenImage.alt = evt.target.alt;
     viewFullImagePopup.querySelector('.view-fullscreen__caption').textContent = evt.target.alt;
 
-    togglePopup(viewFullImagePopup);
+    openPopup(viewFullImagePopup);
 }
 
 function editProfileFormSubmitHandler(evt) {
     evt.preventDefault();
     name.textContent = nameInput.value;
     job.textContent = jobInput.value;
-    togglePopup(editProfilePopup);
+    closePopup(editProfilePopup);
 }
 
 function addNewCardSubmitHandler(evt) {
@@ -102,20 +102,20 @@ function addNewCardSubmitHandler(evt) {
     newPlace.name = placeNameInput.value;
     newPlace.link = placeLinkInput.value;
     elementsList.prepend(createElement(newPlace));
-    togglePopup(addNewCardPopup)
+    closePopup(addNewCardPopup)
 }
 
 editProfileButton.addEventListener('click', () => {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-    togglePopup(editProfilePopup);
+    openPopup(editProfilePopup);
 });
 editProfilePopup.addEventListener('submit', editProfileFormSubmitHandler);
 
 addNewCardButton.addEventListener('click', () => {
     placeNameInput.value = '';
     placeLinkInput.value = '';
-    togglePopup(addNewCardPopup);
+    openPopup(addNewCardPopup);
 });
 addNewCardPopup.addEventListener('submit', addNewCardSubmitHandler);
 
