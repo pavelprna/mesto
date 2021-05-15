@@ -1,5 +1,8 @@
+const popupList = Array.from(document.querySelectorAll('.popup'))
+
 const editProfileButton = document.querySelector('.profile__edit-button');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile');
+const closePopupButtons = Array.from(document.querySelectorAll('.popup__close'));
 const closeEditProfilePopupButton = editProfilePopup.querySelector('.popup__close');
 const nameInput = editProfilePopup.querySelector('.form__input[name = name-input]');
 const jobInput = editProfilePopup.querySelector('.form__input[name = job-input]');
@@ -56,19 +59,19 @@ function closePopupByEsc(evt) {
     if (evt.key === 'Escape') closeOpenedPopup();
 }
 
-function clickHandler(evt) {
+function closePopupByOverlay(evt) {
     if (evt.target === evt.currentTarget) closeOpenedPopup();
 }
 
 function openPopup(popup) {
     document.addEventListener('keydown', closePopupByEsc);
-    popup.addEventListener('click', clickHandler);
+    popup.addEventListener('click', closePopupByOverlay);
     popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
     document.removeEventListener('keydown', closePopupByEsc);
-    popup.removeEventListener('click', clickHandler);
+    popup.removeEventListener('click', closePopupByOverlay);
     popup.classList.remove('popup_opened');
 }
 
@@ -102,7 +105,16 @@ function addNewCardSubmitHandler(evt) {
     newPlace.name = placeNameInput.value;
     newPlace.link = placeLinkInput.value;
     elementsList.prepend(createElement(newPlace));
-    closePopup(addNewCardPopup)
+    closePopup(addNewCardPopup);
+}
+
+function setClosePopupEventListeners(popupList) {
+    popupList.forEach((popup) => {
+        const closePopupButton = popup.querySelector('.popup__close')
+        closePopupButton.addEventListener('click', () => {
+            closePopup(popup);
+        });
+    });
 }
 
 editProfileButton.addEventListener('click', () => {
@@ -119,12 +131,4 @@ addNewCardButton.addEventListener('click', () => {
 });
 addNewCardPopup.addEventListener('submit', addNewCardSubmitHandler);
 
-closeEditProfilePopupButton.addEventListener('click', () => {
-    togglePopup(editProfilePopup);
-});
-closeAddNewCardButton.addEventListener('click', () => {
-    togglePopup(addNewCardPopup);
-});
-closeViewFullImagePopup.addEventListener('click', () => {
-    togglePopup(viewFullImagePopup);
-});
+setClosePopupEventListeners(popupList);
