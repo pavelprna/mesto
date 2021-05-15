@@ -4,8 +4,6 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile');
 const editProfileInputList = Array.from(editProfilePopup.querySelectorAll('.form__input'));
 const editProfileSubmitButton = editProfilePopup.querySelector('.form__submit-button');
-const closePopupButtons = Array.from(document.querySelectorAll('.popup__close'));
-const closeEditProfilePopupButton = editProfilePopup.querySelector('.popup__close');
 const nameInput = editProfilePopup.querySelector('.form__input[name = name-input]');
 const jobInput = editProfilePopup.querySelector('.form__input[name = job-input]');
 const name = document.querySelector('.profile__title');
@@ -13,14 +11,12 @@ const job = document.querySelector('.profile__subtitle');
 
 const addNewCardButton = document.querySelector('.profile__add-button');
 const addNewCardPopup = document.querySelector('.popup_content_new-card');
-const addNewCardInputList = addNewCardPopup.querySelectorAll('.form__input');
+const addNewCardInputList = Array.from(addNewCardPopup.querySelectorAll('.form__input'));
 const addNewCardSubmitButton = addNewCardPopup.querySelector('.form__submit-button');
-const closeAddNewCardButton = addNewCardPopup.querySelector('.popup__close');
 const placeNameInput = addNewCardPopup.querySelector('.form__input[name = place-name-input]');
 const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-link-input]');
 
 const viewFullImagePopup = document.querySelector('.popup_content_place-image');
-const closeViewFullImagePopup = viewFullImagePopup.querySelector('.popup__close');
 
 const elementTemplate = document.querySelector('#element').content;
 const elementsList = document.querySelector('.elements__list');
