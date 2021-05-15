@@ -41,8 +41,10 @@
           <button type="button" class="popup__close button"></button>
           <form class="form" name="edit-profile-form">
             <h2 class="form__title">Редактировать профиль</h2>
-            <input type="text" name="name-input" class="form__input" required>
-            <input type="text" name="job-input" class="form__input" required>
+            <input type="text" name="name-input" id="name-input" class="form__input" minlength="2" maxlength="40" required>
+            <span class="form__input_type_error name-input-error"></span>
+            <input type="text" name="job-input" id="job-input" class="form__input" minlength="2" maxlength="200" required>
+            <span class="form__input_type_error name-input-error"></span>
             <button type="submit" class="form__submit-button button">Сохранить</button>
           </form>
         </div>
@@ -53,8 +55,10 @@
           <button type="button" class="popup__close button"></button>
           <form class="form" name="add-card-form">
             <h2 class="form__title">Новое место</h2>
-            <input type="text" name="place-name-input" placeholder="Название" class="form__input" required>
-            <input type="url" name="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
+            <input type="text" name="place-name-input" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
+            <span class="form__input_type_error place-name-input-error"></span>
+            <input type="url" name="place-link-input" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
+            <span class="form__input_type_error place-link-input-error"></span>
             <button type="submit" class="form__submit-button button">Создать</button>
           </form>
         </div>

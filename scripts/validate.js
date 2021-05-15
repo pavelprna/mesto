@@ -29,10 +29,13 @@ function checkInputValidity(formElement, inputElement, config) {
 }
 
 function toggleButtonState(inputList, buttonElement, config) {
+    const { inactiveButtonClass } = config;
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add('form__submit-button_inactive');
+        buttonElement.disabled = true;
+        buttonElement.classList.add(inactiveButtonClass);
     } else {
-        buttonElement.classList.remove('button_inactive');
+        buttonElement.disabled = false;
+        buttonElement.classList.remove(inactiveButtonClass);
     }
 }
 
