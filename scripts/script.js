@@ -18,13 +18,6 @@ const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-
 
 const viewFullImagePopup = document.querySelector('.popup_content_place-image');
 
-const elementTemplate = document.querySelector('#element').content;
-const elementsList = document.querySelector('.elements__list');
-
-initialElements.forEach((element) => {
-    elementsList.prepend(createElement(element));
-});
-
 function createElement(element) {
     const elementItem = elementTemplate.querySelector('.elements__list-item').cloneNode(true);
 
@@ -64,14 +57,6 @@ function closePopup(popup) {
     document.removeEventListener('keydown', closePopupByEsc);
     popup.removeEventListener('click', closePopupByOverlay);
     popup.classList.remove('popup_opened');
-}
-
-function toggleLike(evt) {
-    evt.target.classList.toggle('element__like_active');
-}
-
-function removeCard(evt) {
-    evt.target.closest('.elements__list-item').remove();
 }
 
 function viewElementImage(evt) {

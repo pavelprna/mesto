@@ -1,4 +1,4 @@
-const initialElements = [
+export const initialElements = [
     {
         name: 'Каир',
         link: './images/element-cairo.jpg',
