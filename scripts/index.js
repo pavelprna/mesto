@@ -1,11 +1,43 @@
 import Card from "./Card.js";
-import {initialElements} from "./initial.js";
+import FormValidator from "./FormValidator.js";
+
+const initialElements = [
+    {
+        name: 'Каир',
+        link: './images/element-cairo.jpg',
+    },
+    {
+        name: 'Острова Гили Траванган',
+        link: './images/element-gili-trawangan.jpg',
+    },
+    {
+        name: 'Голд-Кост',
+        link: './images/element-gold-coast.jpg',
+    },
+    {
+        name: 'Гуанахуанто',
+        link: './images/element-guanajuato.jpg',
+    },
+    {
+        name: 'Сан-Франциско',
+        link: './images/element-san-francisco.jpg',
+    },
+    {
+        name: 'Венеция',
+        link: './images/element-venice.jpg',
+    },
+];
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const viewFullImagePopup = document.querySelector('.popup_content_place-image');
 
 const elementsList = document.querySelector('.elements__list');
+
+const addNewCardButton = document.querySelector('.profile__add-button');
+const addNewCardPopup = document.querySelector('.popup_content_new-card');
+const placeNameInput = addNewCardPopup.querySelector('.form__input[name = place-name-input]');
+const placeLinkInput = addNewCardPopup.querySelector('.form__input[name = place-link-input]');
 
 initialElements.forEach((element) => {
     const card = new Card(element, '#element');
@@ -38,6 +70,16 @@ function closeOpenedPopup() {
     closePopup(openedPopup);
 }
 
+function handleNewCardSubmitButton(evt) {
+    evt.preventDefault();
+    const card = new Card({
+        name: placeNameInput.value,
+        link: placeLinkInput.value,
+    }, '#element');
+    const cardElement = card.generateCard();
+    elementsList.prepend(cardElement);
+}
+
 export function viewElementImage(evt) {
     const fullScreenImage = viewFullImagePopup.querySelector('.view-fullscreen__image');
     fullScreenImage.src = evt.target.src;
@@ -54,5 +96,12 @@ function setClosePopupEventListeners(popupList) {
         });
     });
 }
+
+addNewCardButton.addEventListener('click', () => {
+    placeNameInput.value = '';
+    placeLinkInput.value = '';
+    toggleButtonState(addNewCardInputList, addNewCardSubmitButton, {inactiveButtonClass: 'form__submit-button_disabled'});
+    openPopup(addNewCardPopup);
+});
 
 setClosePopupEventListeners(popupList);
