@@ -98,7 +98,7 @@ function handleNewCardSubmitButton(evt) {
     const card = new Card({
         name: placeNameInput.value,
         link: placeLinkInput.value,
-    }, '#element');
+    }, '#card-element');
     const cardElement = card.generateCard();
     elementsList.prepend(cardElement);
     closePopup(addNewCardPopup);
