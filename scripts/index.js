@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import { initialElements, formConfig } from "./constants.js";
 import FormValidator from "./FormValidator.js";
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
@@ -27,22 +28,17 @@ initialElements.forEach((element) => {
 
 function openPopup(popup) {
   document.addEventListener('keydown', closePopupByEsc);
-  if (popup.querySelector('.form')) {
-    new FormValidator({
-      inputSelector: '.form__input',
-      submitButtonSelector: '.form__submit-button',
-      inactiveButtonClass: 'form__submit-button_disabled',
-      inputErrorClass: 'form__input_type_error',
-      errorClass: 'form__input-error_visible'
-    }, popup.querySelector('.form')).enableValidation();
-  }
   popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
   document.removeEventListener('keydown', closePopupByEsc);
-  popup.removeEventListener('click', closePopupByOverlay);
   popup.classList.remove('popup_opened');
+}
+
+function closeOpenedPopup() {
+  const openedPopup = document.querySelector('.popup_opened');
+  closePopup(openedPopup);
 }
 
 function closePopupByEsc(evt) {
@@ -51,11 +47,6 @@ function closePopupByEsc(evt) {
 
 function closePopupByOverlay(evt) {
   if (evt.target === evt.currentTarget) closeOpenedPopup();
-}
-
-function closeOpenedPopup() {
-  const openedPopup = document.querySelector('.popup_opened');
-  closePopup(openedPopup);
 }
 
 function handleEditProfileSubmitButton(evt) {

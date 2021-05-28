@@ -33,3 +33,5 @@ const formConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_visible'
 };
+
+export { initialElements, formConfig };
