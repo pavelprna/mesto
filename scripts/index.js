@@ -1,33 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
-const initialElements = [
-  {
-    name: 'Каир',
-    link: './images/element-cairo.jpg',
-  },
-  {
-    name: 'Острова Гили Траванган',
-    link: './images/element-gili-trawangan.jpg',
-  },
-  {
-    name: 'Голд-Кост',
-    link: './images/element-gold-coast.jpg',
-  },
-  {
-    name: 'Гуанахуанто',
-    link: './images/element-guanajuato.jpg',
-  },
-  {
-    name: 'Сан-Франциско',
-    link: './images/element-san-francisco.jpg',
-  },
-  {
-    name: 'Венеция',
-    link: './images/element-venice.jpg',
-  },
-];
-
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const elementsList = document.querySelector('.elements__list');
