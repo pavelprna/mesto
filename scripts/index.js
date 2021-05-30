@@ -79,7 +79,7 @@ function handleNewCardSubmit(evt) {
 function viewElementImage(name, link) {
   fullScreenImage.src = link;
   fullScreenImage.alt = name;
-  fullScreenImage.textContent = name;
+  imagePopup.querySelector('.view-fullscreen__caption').textContent = name;
   openPopup(imagePopup);
 }
 
@@ -103,8 +103,7 @@ editProfileButton.addEventListener('click', () => {
 editProfilePopup.addEventListener('submit', handleEditProfileSubmit);
 
 addNewCardButton.addEventListener('click', () => {
-  placeNameInput.value = '';
-  placeLinkInput.value = '';
+  newCardForm.reset();
   addNewCardValidator.clearInputErrors();
   openPopup(newCardPopup);
 });
