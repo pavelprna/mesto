@@ -1,5 +1,11 @@
+import Section from "./Section.js";
 import Card from "./Card.js";
-import { initialElements, formConfig } from "./constants.js";
+
+const cardListSection = '.elements__list';
+
+// -------------------------------------- //
+
+import {formConfig, initialElements} from "./constants.js";
 import FormValidator from "./FormValidator.js";
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
@@ -27,15 +33,18 @@ editProfileValidator.enableValidation();
 const addNewCardValidator = new FormValidator(formConfig, newCardForm);
 addNewCardValidator.enableValidation();
 
-function renderCard(data) {
-  const card = new Card(data, '#card-element', viewElementImage);
-  const cardElement = card.generateCard();
-  elementsList.prepend(cardElement);
-}
+const cardList = new Section({
+  items: initialElements,
+  renderer: (item) => {
+    const card = new Card(item, '#card-element', viewElementImage);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement)
+  }
+}, cardListSection)
 
-initialElements.forEach((element) => {
-  renderCard(element);
-});
+cardList.renderItems();
+
+
 
 function openPopup(popup) {
   document.addEventListener('keydown', closePopupByEsc);
