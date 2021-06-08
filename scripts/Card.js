@@ -1,4 +1,5 @@
 export default class Card {
+
   constructor(data, cardSelector, onClick) {
     this._name = data.name;
     this._image = data.link;
@@ -7,7 +8,12 @@ export default class Card {
   }
 
   _handleOnClick = () => {
-    this._onClick(this._name, this._image);
+    const data = {
+      caption: this._name,
+      alt: this._name,
+      link: this._image,
+    }
+    this._onClick(data);
   }
 
   _handleLikeCard = () => {

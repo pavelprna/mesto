@@ -1,7 +1,9 @@
 import Section from "./Section.js";
 import Card from "./Card.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const cardListSection = '.elements__list';
+const imagePopupSelector = '.popup_content_place-image';
 
 // -------------------------------------- //
 
@@ -11,8 +13,7 @@ import FormValidator from "./FormValidator.js";
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const elementsList = document.querySelector('.elements__list');
 
-const imagePopup = document.querySelector('.popup_content_place-image');
-const fullScreenImage = imagePopup.querySelector('.view-fullscreen__image');
+// const fullScreenImage = imagePopup.querySelector('.view-fullscreen__image');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile');
@@ -36,7 +37,10 @@ addNewCardValidator.enableValidation();
 const cardList = new Section({
   items: initialElements,
   renderer: (item) => {
-    const card = new Card(item, '#card-element', viewElementImage);
+    const card = new Card(item, '#card-element', (item) => {
+      const imagePopup = new PopupWithImage(item, imagePopupSelector);
+      imagePopup.open();
+    });
     const cardElement = card.generateCard();
     cardList.addItem(cardElement)
   }
@@ -85,11 +89,14 @@ function handleNewCardSubmit(evt) {
   closePopup(newCardPopup);
 }
 
-function viewElementImage(name, link) {
-  fullScreenImage.src = link;
-  fullScreenImage.alt = name;
-  imagePopup.querySelector('.view-fullscreen__caption').textContent = name;
-  openPopup(imagePopup);
+function viewElementImage() {
+  const imagePopup = new PopupWithImage(imagePopupSelector);
+
+  imagePopup.open()
+  // fullScreenImage.src = link;
+  // fullScreenImage.alt = name;
+  // imagePopup.querySelector('.view-fullscreen__caption').textContent = name;
+  // openPopup(imagePopup);
 }
 
 // function setClosePopupEventListeners(popupList) {
