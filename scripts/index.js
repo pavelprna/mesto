@@ -46,28 +46,28 @@ cardList.renderItems();
 
 
 
-function openPopup(popup) {
-  document.addEventListener('keydown', closePopupByEsc);
-  popup.classList.add('popup_opened');
-}
+// function openPopup(popup) {
+//   document.addEventListener('keydown', closePopupByEsc);
+//   popup.classList.add('popup_opened');
+// }
 
-function closePopup(popup) {
-  document.removeEventListener('keydown', closePopupByEsc);
-  popup.classList.remove('popup_opened');
-}
+// function closePopup(popup) {
+//   document.removeEventListener('keydown', closePopupByEsc);
+//   popup.classList.remove('popup_opened');
+// }
 
-function closeOpenedPopup() {
-  const openedPopup = document.querySelector('.popup_opened');
-  closePopup(openedPopup);
-}
+// function closeOpenedPopup() {
+//   const openedPopup = document.querySelector('.popup_opened');
+//   closePopup(openedPopup);
+// }
 
-function closePopupByEsc(evt) {
-  if (evt.key === 'Escape') closeOpenedPopup();
-}
+// function closePopupByEsc(evt) {
+//   if (evt.key === 'Escape') closeOpenedPopup();
+// }
 
-function closePopupByOverlay(evt) {
-  if (evt.target === evt.currentTarget) closeOpenedPopup();
-}
+// function closePopupByOverlay(evt) {
+//   if (evt.target === evt.currentTarget) closeOpenedPopup();
+// }
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
@@ -92,15 +92,15 @@ function viewElementImage(name, link) {
   openPopup(imagePopup);
 }
 
-function setClosePopupEventListeners(popupList) {
-  popupList.forEach((popup) => {
-    const closePopupButton = popup.querySelector('.popup__close')
-    closePopupButton.addEventListener('click', () => {
-      closePopup(popup);
-    });
-    popup.addEventListener('click', closePopupByOverlay);
-  });
-}
+// function setClosePopupEventListeners(popupList) {
+//   popupList.forEach((popup) => {
+//     const closePopupButton = popup.querySelector('.popup__close')
+//     closePopupButton.addEventListener('click', () => {
+//       closePopup(popup);
+//     });
+//     popup.addEventListener('click', closePopupByOverlay);
+//   });
+// }
 
 editProfileButton.addEventListener('click', () => {
   nameInput.value = name.textContent;
@@ -119,4 +119,4 @@ addNewCardButton.addEventListener('click', () => {
 
 newCardPopup.addEventListener('submit', handleNewCardSubmit);
 
-setClosePopupEventListeners(popupList);
+// setClosePopupEventListeners(popupList);
