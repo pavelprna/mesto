@@ -1,6 +1,7 @@
 import Section from "./Section.js";
 import Card from "./Card.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const cardListSection = '.elements__list';
 const imagePopupSelector = '.popup_content_place-image';
@@ -9,11 +10,6 @@ const imagePopupSelector = '.popup_content_place-image';
 
 import {formConfig, initialElements} from "./constants.js";
 import FormValidator from "./FormValidator.js";
-
-const popupList = Array.from(document.querySelectorAll('.popup'));
-const elementsList = document.querySelector('.elements__list');
-
-// const fullScreenImage = imagePopup.querySelector('.view-fullscreen__image');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const editProfilePopup = document.querySelector('.popup_content_edit-profile');
@@ -42,9 +38,9 @@ const cardList = new Section({
       imagePopup.open();
     });
     const cardElement = card.generateCard();
-    cardList.addItem(cardElement)
+    cardList.addItem(cardElement);
   }
-}, cardListSection)
+}, cardListSection);
 
 cardList.renderItems();
 
@@ -89,15 +85,15 @@ function handleNewCardSubmit(evt) {
   closePopup(newCardPopup);
 }
 
-function viewElementImage() {
-  const imagePopup = new PopupWithImage(imagePopupSelector);
-
-  imagePopup.open()
+// function viewElementImage() {
+//   const imagePopup = new PopupWithImage(imagePopupSelector);
+//
+//   imagePopup.open()
   // fullScreenImage.src = link;
   // fullScreenImage.alt = name;
   // imagePopup.querySelector('.view-fullscreen__caption').textContent = name;
   // openPopup(imagePopup);
-}
+// }
 
 // function setClosePopupEventListeners(popupList) {
 //   popupList.forEach((popup) => {
