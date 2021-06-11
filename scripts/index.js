@@ -57,18 +57,21 @@ function handleNewCardSubmit(evt) {
   closePopup(newCardPopup);
 }
 
+const profilePopup = new PopupWithForm(profilePopupSelector, (inputValues) => {
+  const { name, job } = inputValues;
+
+  // TODO: send data to UserInfo
+
+  profilePopup.close();
+});
+
+profilePopup.setEventListeners();
 
 editProfileButton.addEventListener('click', () => {
-  // nameInput.value = name.textContent;
-  // jobInput.value = job.textContent;
+
+  // TODO: accept data from UserInfo
+
   editProfileValidator.clearInputErrors();
-  const profilePopup = new PopupWithForm(profilePopupSelector, (evt) => {
-    evt.preventDefault();
-    // name.textContent = nameInput.value;
-    // job.textContent = jobInput.value;
-    profilePopup.close();
-  });
-  profilePopup.setEventListeners();
   profilePopup.open();
 });
 
