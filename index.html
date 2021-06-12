@@ -42,12 +42,12 @@
           <form class="form" name="edit-profile-form" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
             <label for="name-input" class="form__label">
-              <input type="text" name="name-input" id="name-input" class="form__input" minlength="2" maxlength="40" required>
+              <input type="text" name="name" id="name-input" class="form__input" minlength="2" maxlength="40" required>
               <span class="form__input-error form__input-error_visible name-input-error"></span>
             </label>
-            <label for="job-input" class="form__label">
-              <input type="text" name="job-input" id="job-input" class="form__input" minlength="2" maxlength="200" required>
-              <span class="form__input-error form__input-error_visible job-input-error"></span>
+            <label for="about-input" class="form__label">
+              <input type="text" name="about" id="about-input" class="form__input" minlength="2" maxlength="200" required>
+              <span class="form__input-error form__input-error_visible about-input-error"></span>
             </label>
             <button type="submit" class="form__submit-button button">Сохранить</button>
           </form>
@@ -60,11 +60,11 @@
           <form class="form" name="add-card-form" novalidate>
             <h2 class="form__title">Новое место</h2>
             <label for="place-name-input" class="form__label">
-              <input type="text" name="place-name-input" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
+              <input type="text" name="name" id="place-name-input" placeholder="Название" class="form__input" minlength="2" required>
               <span class="form__input-error form__input-error_visible place-name-input-error"></span>
             </label>
             <label for="place-link-input" class="form__label">
-              <input type="url" name="place-link-input" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
+              <input type="url" name="link" id="place-link-input" placeholder="Ссылка на картинку" class="form__input" required>
               <span class="form__input-error form__input-error_visible place-link-input-error"></span>
             </label>
             <button type="submit" class="form__submit-button button">Создать</button>
