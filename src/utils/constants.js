@@ -1,37 +1,35 @@
-const initialElements = [
+export const initialElements = [
   {
     name: 'Каир',
-    link: './images/element-cairo.jpg',
+    link: './src/images/element-cairo.jpg',
   },
   {
     name: 'Острова Гили Траванган',
-    link: './images/element-gili-trawangan.jpg',
+    link: './src/images/element-gili-trawangan.jpg',
   },
   {
     name: 'Голд-Кост',
-    link: './images/element-gold-coast.jpg',
+    link: './src/images/element-gold-coast.jpg',
   },
   {
     name: 'Гуанахуанто',
-    link: './images/element-guanajuato.jpg',
+    link: './src/images/element-guanajuato.jpg',
   },
   {
     name: 'Сан-Франциско',
-    link: './images/element-san-francisco.jpg',
+    link: './src/images/element-san-francisco.jpg',
   },
   {
     name: 'Венеция',
-    link: './images/element-venice.jpg',
+    link: './src/images/element-venice.jpg',
   },
 ];
 
-const formConfig = {
+export const formConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit-button',
   inactiveButtonClass: 'form__submit-button_disabled',
   inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_visible'
+  errorClass: 'form__input-error_visible',
 };
-
-export { initialElements, formConfig };
