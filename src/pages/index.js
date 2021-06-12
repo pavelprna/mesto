@@ -1,25 +1,21 @@
-import Section from "./Section.js";
-import Card from "./Card.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import './index.css';
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import { formConfig, initialElements } from "../utils/constants.js";
+import FormValidator from "../components/FormValidator.js";
 
 const cardListSection = '.elements__list';
 const imagePopupSelector = '.popup_content_place-image';
 const profilePopupSelector = '.popup_content_edit-profile';
-
-// -------------------------------------- //
-
-import { formConfig, initialElements } from "./constants.js";
-import FormValidator from "./FormValidator.js";
-
 const editProfileButton = document.querySelector('.profile__edit-button');
 const editProfileForm = document.querySelector('.form[name = edit-profile-form]')
 const userNameSelector = '.profile__title';
 const userAboutSelector = '.profile__subtitle';
 const userNameInput = document.querySelector('.form__input[name = name]')
 const userAboutInput = document.querySelector('.form__input[name = about]')
-
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardPopupSelector = '.popup_content_new-card';
 const newCardForm = document.querySelector('.form[name = add-card-form]');
