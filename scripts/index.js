@@ -7,7 +7,6 @@ import UserInfo from "./UserInfo.js";
 const cardListSection = '.elements__list';
 const imagePopupSelector = '.popup_content_place-image';
 const profilePopupSelector = '.popup_content_edit-profile';
-const userInfoSelector = '.profile';
 
 // -------------------------------------- //
 
@@ -21,11 +20,9 @@ const userAboutSelector = '.profile__subtitle';
 const userNameInput = document.querySelector('.form__input[name = name]')
 const userAboutInput = document.querySelector('.form__input[name = about]')
 
-const addNewCardButton = document.querySelector('.profile__add-button');
+const newCardButton = document.querySelector('.profile__add-button');
 const newCardPopupSelector = '.popup_content_new-card';
-const newCardForm = document.querySelector('.form[name = add-card-form]')
-const placeNameInput = document.querySelector('.form__input[name = place-name-input]');
-const placeLinkInput = document.querySelector('.form__input[name = place-link-input]');
+const newCardForm = document.querySelector('.form[name = add-card-form]');
 
 // enable validation for all forms:
 const editProfileValidator = new FormValidator(formConfig, editProfileForm);
@@ -33,16 +30,15 @@ editProfileValidator.enableValidation();
 const addNewCardValidator = new FormValidator(formConfig, newCardForm);
 addNewCardValidator.enableValidation();
 
+// image popup:
+const imagePopup = new PopupWithImage(imagePopupSelector);
+imagePopup.setEventListeners();
 
 // render card list:
 const cardList = new Section({
   items: initialElements,
   renderer: (item) => {
-    const card = new Card(item, '#card-element', (item) => {
-      const imagePopup = new PopupWithImage(item, imagePopupSelector);
-      imagePopup.setEventListeners();
-      imagePopup.open();
-    });
+    const card = new Card(item, '#card-element', item => imagePopup.open(item));
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   }
@@ -75,22 +71,15 @@ editProfileButton.addEventListener('click', () => {
 
 // new card popup:
 const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
-  const card = new Card(inputValues, '#card-element')
-})
-function handleNewCardSubmit(evt) {
-  evt.preventDefault();
-  renderCard({
-    name: placeNameInput.value,
-    link: placeLinkInput.value,
-  });
-  closePopup(newCardPopup);
-}
+  const card = new Card(inputValues, '#card-element', item => imagePopup.open(item));
 
-addNewCardButton.addEventListener('click', () => {
-  newCardForm.reset();
-  addNewCardValidator.clearInputErrors();
-  openPopup(newCardPopup);
+  cardList.addItem(card.generateCard());
+  newCardPopup.close();
 });
 
-// newCardPopup.addEventListener('submit', handleNewCardSubmit);
+newCardPopup.setEventListeners();
 
+newCardButton.addEventListener('click', () => {
+  addNewCardValidator.clearInputErrors()
+  newCardPopup.open();
+})
