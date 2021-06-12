@@ -1,27 +1,34 @@
+import cairoImage from '../images/element-cairo.jpg';
+import giliImage from '../images/element-gili-trawangan.jpg';
+import coastImage from '../images/element-gold-coast.jpg';
+import guanajuantoImage from '../images/element-guanajuato.jpg';
+import sanFranciscoImage from '../images/element-san-francisco.jpg';
+import veniceImage from '../images/element-venice.jpg';
+
 export const initialElements = [
   {
     name: 'Каир',
-    link: './src/images/element-cairo.jpg',
+    link: cairoImage,
   },
   {
     name: 'Острова Гили Траванган',
-    link: './src/images/element-gili-trawangan.jpg',
+    link: giliImage,
   },
   {
     name: 'Голд-Кост',
-    link: './src/images/element-gold-coast.jpg',
+    link: coastImage,
   },
   {
     name: 'Гуанахуанто',
-    link: './src/images/element-guanajuato.jpg',
+    link: guanajuantoImage,
   },
   {
     name: 'Сан-Франциско',
-    link: './src/images/element-san-francisco.jpg',
+    link: sanFranciscoImage,
   },
   {
     name: 'Венеция',
-    link: './src/images/element-venice.jpg',
+    link: veniceImage,
   },
 ];
 
