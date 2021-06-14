@@ -40,3 +40,15 @@ export const formConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_visible',
 };
+
+export const cardConfig = {
+  cardSelector: '#card-element',
+  cardListSection: '.elements__list',
+  imageSelector: '.element__image',
+  titleSelector: '.element__title',
+  listItemSelector: '.elements__list-item',
+  removeButtonSelector: '.element__remove-button',
+  likeSelector: '.element__like',
+  activeLikeClass: 'element__like_active'
+
+}
