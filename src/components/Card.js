@@ -1,3 +1,5 @@
+import { cardConfig } from "../utils/constants.js";
+
 export default class Card {
 
   constructor(data, cardSelector, onClick) {
@@ -17,7 +19,8 @@ export default class Card {
   }
 
   _handleLikeCard = () => {
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    const { activeLikeClass } = cardConfig;
+    this._likeButton.classList.toggle(activeLikeClass);
   }
 
   _handleRemoveCard = () => {
@@ -26,26 +29,33 @@ export default class Card {
   }
 
   _setEventListeners = () => {
-    this._element.querySelector('.element__remove-button').addEventListener('click', this._handleRemoveCard);
-    this._element.querySelector('.element__like').addEventListener('click', this._handleLikeCard);
+    const { removeButtonSelector, likeSelector} = cardConfig;
+    this._element.querySelector(removeButtonSelector).addEventListener('click', this._handleRemoveCard);
+
+    this._likeButton = this._element.querySelector(likeSelector);
+
+    this._likeButton.addEventListener('click', this._handleLikeCard);
     this._elementImage.addEventListener('click', this._handleOnClick);
   }
 
   _getTemplate = () => {
+    const { listItemSelector } = cardConfig;
     return document
       .querySelector(this._cardSelector)
       .content
-      .querySelector('.elements__list-item')
+      .querySelector(listItemSelector)
       .cloneNode(true);
   }
 
   generateCard = () => {
+    const { imageSelector, titleSelector } = cardConfig;
+
     this._element = this._getTemplate();
-    this._elementImage = this._element.querySelector('.element__image');
+    this._elementImage = this._element.querySelector(imageSelector);
 
     this._elementImage.src = this._image;
     this._elementImage.alt = this._name;
-    this._element.querySelector('.element__title').textContent = this._name;
+    this._element.querySelector(titleSelector).textContent = this._name;
 
     this._setEventListeners();
 
