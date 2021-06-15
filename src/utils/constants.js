@@ -50,5 +50,15 @@ export const cardConfig = {
   removeButtonSelector: '.element__remove-button',
   likeSelector: '.element__like',
   activeLikeClass: 'element__like_active'
+};
 
+export const popupWithImageConfig = {
+  imagePopupSelector: '.popup_content_place-image',
+  imageSelector: '.view-fullscreen__image',
+  captionSelector: '.view-fullscreen__caption',
+}
+
+export const popupConfig = {
+  openedClass: 'popup_opened',
+  closeButtonSelector: '.popup__close',
 }

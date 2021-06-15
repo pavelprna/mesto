@@ -3,6 +3,7 @@ import {
   formConfig,
   initialElements,
   cardConfig,
+  popupWithImageConfig
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -11,8 +12,6 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
-// const cardListSection = '.elements__list';
-const imagePopupSelector = '.popup_content_place-image';
 const profilePopupSelector = '.popup_content_edit-profile';
 const profileButton = document.querySelector('.profile__edit-button');
 const profileForm = document.querySelector('.form[name = edit-profile-form]')
@@ -31,6 +30,7 @@ const newCardValidator = new FormValidator(formConfig, newCardForm);
 newCardValidator.enableValidation();
 
 // image popup:
+const { imagePopupSelector } = popupWithImageConfig;
 const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
