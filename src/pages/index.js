@@ -3,7 +3,12 @@ import {
   formConfig,
   initialElements,
   cardConfig,
-  popupWithImageConfig
+  popupWithImageConfig,
+  newCardPopupConfig,
+  profilePopupConfig,
+  profileConfig,
+  profileButton,
+  newCardButton
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -12,21 +17,10 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 
-const profilePopupSelector = '.popup_content_edit-profile';
-const profileButton = document.querySelector('.profile__edit-button');
-const profileForm = document.querySelector('.form[name = edit-profile-form]')
-const userNameSelector = '.profile__title';
-const userAboutSelector = '.profile__subtitle';
-const userNameInput = document.querySelector('.form__input[name = name]')
-const userAboutInput = document.querySelector('.form__input[name = about]')
-const newCardButton = document.querySelector('.profile__add-button');
-const newCardPopupSelector = '.popup_content_new-card';
-const newCardForm = document.querySelector('.form[name = add-card-form]');
-
 // enable validation for all forms:
-const profileValidator = new FormValidator(formConfig, profileForm);
+const profileValidator = new FormValidator(formConfig, profilePopupConfig.profileForm);
 profileValidator.enableValidation();
-const newCardValidator = new FormValidator(formConfig, newCardForm);
+const newCardValidator = new FormValidator(formConfig, newCardPopupConfig.newCardForm);
 newCardValidator.enableValidation();
 
 // image popup:
@@ -49,10 +43,12 @@ const cardList = new Section({
 cardList.renderItems();
 
 // user info:
+const { userNameSelector, userAboutSelector } = profileConfig;
 const userInfo = new UserInfo(userNameSelector, userAboutSelector);
 
 
 // profile popup:
+const { profilePopupSelector } = profilePopupConfig;
 const profilePopup = new PopupWithForm(profilePopupSelector, (inputValues) => {
   userInfo.setUserInfo(inputValues);
 
@@ -63,6 +59,7 @@ profilePopup.setEventListeners();
 
 profileButton.addEventListener('click', () => {
   const { name, about } = userInfo.getUserInfo();
+  const { userNameInput, userAboutInput } = profilePopupConfig;
 
   userNameInput.value = name;
   userAboutInput.value = about;
@@ -72,6 +69,7 @@ profileButton.addEventListener('click', () => {
 });
 
 // new card popup:
+const { newCardPopupSelector } = newCardPopupConfig;
 const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
   const card = new Card(inputValues, cardSelector, item => imagePopup.open(item));
 
