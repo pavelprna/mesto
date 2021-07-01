@@ -47,6 +47,9 @@ api.getInitialCards().then(data => {
 // user info:
 const { userNameSelector, userAboutSelector } = profileConfig;
 const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+api.getUserInfo().then(user => {
+  userInfo.setUserInfo(user);
+})
 
 
 // profile popup:
