@@ -1,7 +1,6 @@
 import './index.css';
 import {
   formConfig,
-  initialElements,
   cardConfig,
   popupWithImageConfig,
   newCardPopupConfig,
@@ -16,6 +15,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
+import {api} from "../utils/Api";
 
 // enable validation for all forms:
 const profileValidator = new FormValidator(formConfig, profilePopupConfig.profileForm);
@@ -28,19 +28,21 @@ const { imagePopupSelector } = popupWithImageConfig;
 const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
-// render card list:
-const { cardSelector, cardListSection } = cardConfig;
+api.getInitialCards().then(data => {
+  const { cardSelector, cardListSection } = cardConfig;
 
-const cardList = new Section({
-  items: initialElements,
-  renderer: (item) => {
-    const card = new Card(item, cardSelector, item => imagePopup.open(item));
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-  }
-}, cardListSection);
+  const cardList = new Section({
+    items: data,
+    renderer: (item) => {
+      const card = new Card(item, cardSelector, item => imagePopup.open(item));
+      const cardElement = card.generateCard();
+      cardList.addItem(cardElement);
+    }
+  }, cardListSection);
 
-cardList.renderItems();
+  cardList.renderItems();
+})
+
 
 // user info:
 const { userNameSelector, userAboutSelector } = profileConfig;
