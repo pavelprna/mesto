@@ -8,6 +8,7 @@ class Api {
     return fetch(this._baseUrl + param.path, {
       method: param.method,
       headers: this._headers,
+      body: param.body,
     })
         .then(res => {
           if (res.ok) {
@@ -22,13 +23,22 @@ class Api {
       method: 'GET',
       path: 'users/me',
       error: 'Не удалось получить данные о пользователе с сервера',
-    })
+    });
   }
 
   getInitialCards() {
     return this._request({
       method: 'GET',
       path: 'cards',
+      error: 'Не удалось получить карточки с сервера',
+    });
+  }
+
+  editProfile(data) {
+    return this._request({
+      method: 'PATCH',
+      path: 'users/me',
+      body: JSON.stringify(data),
       error: 'Не удалось получить карточки с сервера',
     })
   }
