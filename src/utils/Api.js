@@ -14,15 +14,14 @@ class Api {
           if (res.ok) {
             return res.json();
           }
-          return Promise.reject(`Ошибка ${res.status}: ${param.error}`);
+          return Promise.reject(`Ошибка ${res.status}: ${res.message}`);
         });
   }
 
-  getUserInfo() {
+  getUser() {
     return this._request({
       method: 'GET',
       path: 'users/me',
-      error: 'Не удалось получить данные о пользователе с сервера',
     });
   }
 
@@ -30,17 +29,23 @@ class Api {
     return this._request({
       method: 'GET',
       path: 'cards',
-      error: 'Не удалось получить карточки с сервера',
     });
   }
 
-  editProfile(data) {
+  updateUser(data) {
     return this._request({
       method: 'PATCH',
       path: 'users/me',
       body: JSON.stringify(data),
-      error: 'Не удалось получить карточки с сервера',
-    })
+    });
+  }
+
+  createCard(data) {
+    return this._request({
+      method: 'POST',
+      path: 'cards',
+      body: JSON.stringify(data),
+    });
   }
 }
 
@@ -48,6 +53,6 @@ export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-25/',
   headers: {
     authorization: '04f57d96-9414-4d3f-8e70-9d8b878ddf47',
-    // 'Content-Type': 'application/json'
+    'Content-Type': 'application/json'
   }
 })

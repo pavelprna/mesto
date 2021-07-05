@@ -26,42 +26,43 @@ newCardValidator.enableValidation();
 // user info:
 const { userNameSelector, userAboutSelector } = profileConfig;
 const userInfo = new UserInfo(userNameSelector, userAboutSelector);
-api.getUserInfo().then(user => {
+api.getUser().then(user => {
   userInfo.setUserInfo(user);
-})
+});
 
 // get initial cards
-api.getInitialCards().then(data => {
-  const { cardSelector, cardListSection } = cardConfig;
-
-  const cardList = new Section({
+const { cardSelector, cardListSection } = cardConfig;
+const cardList = api.getInitialCards().then(data => {
+  const cardSection = new Section({
     items: data,
     renderer: (item) => {
       const card = new Card(item, cardSelector, item => imagePopup.open(item));
       const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
+      cardSection.addItem(cardElement);
     }
   }, cardListSection);
 
-  cardList.renderItems();
-})
+  cardSection.renderItems();
+
+  return cardSection;
+});
+
+// profile popup:
+const { profilePopupSelector } = profilePopupConfig;
+const profilePopup = new PopupWithForm(profilePopupSelector, (inputValues) => {
+  api.updateUser(inputValues)
+    .then(user => {
+      userInfo.setUserInfo(user);
+      profilePopup.close();
+    });
+});
+
+profilePopup.setEventListeners();
 
 // image popup:
 const { imagePopupSelector } = popupWithImageConfig;
 const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
-
-
-
-// profile popup:
-const { profilePopupSelector } = profilePopupConfig;
-const profilePopup = new PopupWithForm(profilePopupSelector, (inputValues) => {
-  userInfo.setUserInfo(inputValues);
-
-  profilePopup.close();
-});
-
-profilePopup.setEventListeners();
 
 profileButton.addEventListener('click', () => {
   const { name, about } = userInfo.getUserInfo();
@@ -77,9 +78,16 @@ profileButton.addEventListener('click', () => {
 // new card popup:
 const { newCardPopupSelector } = newCardPopupConfig;
 const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
-  const card = new Card(inputValues, cardSelector, item => imagePopup.open(item));
+  api.createCard(inputValues)
+    .then(json => {
+      return new Card(json, cardSelector, item => imagePopup.open(item));
+    })
+    .then(card => {
+      cardList.then((section) => {
+        section.addItem(card.generateCard());
+      })
+    })
 
-  cardList.addItem(card.generateCard());
   newCardPopup.close();
 });
 
