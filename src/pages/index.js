@@ -23,11 +23,14 @@ profileValidator.enableValidation();
 const newCardValidator = new FormValidator(formConfig, newCardPopupConfig.newCardForm);
 newCardValidator.enableValidation();
 
-// image popup:
-const { imagePopupSelector } = popupWithImageConfig;
-const imagePopup = new PopupWithImage(imagePopupSelector);
-imagePopup.setEventListeners();
+// user info:
+const { userNameSelector, userAboutSelector } = profileConfig;
+const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+api.getUserInfo().then(user => {
+  userInfo.setUserInfo(user);
+})
 
+// get initial cards
 api.getInitialCards().then(data => {
   const { cardSelector, cardListSection } = cardConfig;
 
@@ -43,13 +46,11 @@ api.getInitialCards().then(data => {
   cardList.renderItems();
 })
 
+// image popup:
+const { imagePopupSelector } = popupWithImageConfig;
+const imagePopup = new PopupWithImage(imagePopupSelector);
+imagePopup.setEventListeners();
 
-// user info:
-const { userNameSelector, userAboutSelector } = profileConfig;
-const userInfo = new UserInfo(userNameSelector, userAboutSelector);
-api.getUserInfo().then(user => {
-  userInfo.setUserInfo(user);
-})
 
 
 // profile popup:
