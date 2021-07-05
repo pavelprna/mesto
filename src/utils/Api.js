@@ -1,32 +1,36 @@
 class Api {
   constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+  }
+
+  _request(param) {
+    return fetch(this._baseUrl + param.path, {
+      method: param.method,
+      headers: this._headers,
+    })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Ошибка ${res.status}: ${param.error}`);
+        });
   }
 
   getUserInfo() {
-    return fetch(this.baseUrl + 'users/me', {
+    return this._request({
       method: 'GET',
-      headers: this.headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`)
+      path: 'users/me',
+      error: 'Не удалось получить данные о пользователе с сервера',
     })
   }
 
   getInitialCards() {
-    return fetch(this.baseUrl + 'cards', {
+    return this._request({
       method: 'GET',
-      headers: this.headers
+      path: 'cards',
+      error: 'Не удалось получить карточки с сервера',
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка: ${res.status}`)
-      })
   }
 }
 
