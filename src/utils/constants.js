@@ -14,8 +14,9 @@ export const cardConfig = {
   titleSelector: '.element__title',
   listItemSelector: '.elements__list-item',
   removeButtonSelector: '.element__remove-button',
-  likeSelector: '.element__like',
-  activeLikeClass: 'element__like_active'
+  likeSelector: '.like__button',
+  likeCounterSelector: '.like__counter',
+  activeLikeClass: 'like__button_active'
 };
 
 export const popupWithImageConfig = {

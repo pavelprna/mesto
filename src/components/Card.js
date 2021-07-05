@@ -7,6 +7,7 @@ export default class Card {
     this._image = data.link;
     this._cardSelector = cardSelector;
     this._onClick = onClick;
+    this._likes = data.likes;
   }
 
   _handleOnClick = () => {
@@ -48,7 +49,7 @@ export default class Card {
   }
 
   generateCard = () => {
-    const { imageSelector, titleSelector } = cardConfig;
+    const { imageSelector, titleSelector, likeCounterSelector } = cardConfig;
 
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector(imageSelector);
@@ -56,6 +57,9 @@ export default class Card {
     this._elementImage.src = this._image;
     this._elementImage.alt = this._name;
     this._element.querySelector(titleSelector).textContent = this._name;
+
+    this._likeCounter = this._element.querySelector(likeCounterSelector);
+    this._likeCounter.textContent = this._likes.length;
 
     this._setEventListeners();
 
