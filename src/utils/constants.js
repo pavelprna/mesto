@@ -37,6 +37,11 @@ export const newCardPopupConfig = {
   newCardForm: document.querySelector('.form[name = add-card-form]')
 }
 
+export const confirmPopupConfig = {
+  confirmPopupSelector: '.popup_content_confirmation',
+  formSelector: '.'
+}
+
 export const popupConfig = {
   openedClass: 'popup_opened',
   closeButtonSelector: '.popup__close',

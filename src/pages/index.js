@@ -5,6 +5,7 @@ import {
   popupWithImageConfig,
   newCardPopupConfig,
   profilePopupConfig,
+  confirmPopupConfig,
   profileConfig,
   profileButton,
   newCardButton
@@ -16,6 +17,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import {api} from "../utils/Api";
+import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 
 // enable validation for all forms:
 const profileValidator = new FormValidator(formConfig, profilePopupConfig.profileForm);
@@ -36,7 +38,15 @@ const cardList = api.getInitialCards().then(data => {
   const cardSection = new Section({
     items: data,
     renderer: (item) => {
-      const card = new Card(item, cardSelector, item => imagePopup.open(item));
+      const card = new Card(item, cardSelector, {
+        viewImage: item => imagePopup.open(item),
+        confirmDelete: item => {
+          confirmPopup.setSubmitAction(item => {
+
+          })
+          confirmPopup.open();
+        }
+      });
       const cardElement = card.generateCard();
       cardSection.addItem(cardElement);
     }
@@ -97,3 +107,8 @@ newCardButton.addEventListener('click', () => {
   newCardValidator.clearInputErrors()
   newCardPopup.open();
 });
+
+// confirm popup:
+const { confirmPopupSelector } = confirmPopupConfig;
+const confirmPopup = new PopupWithFormSubmit(confirmPopupSelector);
+confirmPopup.setEventListeners()

@@ -2,11 +2,12 @@ import { cardConfig } from "../utils/constants.js";
 
 export default class Card {
 
-  constructor(data, cardSelector, onClick) {
+  constructor(data, cardSelector, callbacks) {
     this._name = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
-    this._onClick = onClick;
+    this._onClick = callbacks.viewImage;
+    this._onDelete = callbacks.confirmDelete;
     this._likes = data.likes;
   }
 
@@ -25,6 +26,7 @@ export default class Card {
   }
 
   _handleRemoveCard = () => {
+    this._onDelete();
     this._element.remove();
     this._element = null;
   }
