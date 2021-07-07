@@ -30,6 +30,7 @@ const { userNameSelector, userAboutSelector } = profileConfig;
 const userInfo = new UserInfo(userNameSelector, userAboutSelector);
 api.getUser().then(user => {
   userInfo.setUserInfo(user);
+  return user;
 });
 
 // get initial cards
@@ -47,6 +48,8 @@ const cardList = api.getInitialCards().then(data => {
           confirmPopup.open();
         }
       });
+      card.isOwner = userInfo.getId() === item.owner._id;
+      console.log(card._isOwner)
       const cardElement = card.generateCard();
       cardSection.addItem(cardElement);
     }

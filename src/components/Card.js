@@ -9,6 +9,7 @@ export default class Card {
     this._onClick = callbacks.viewImage;
     this._onDelete = callbacks.confirmDelete;
     this._likes = data.likes;
+    this._isOwner = false;
   }
 
   _handleOnClick = () => {
@@ -33,7 +34,13 @@ export default class Card {
 
   _setEventListeners = () => {
     const { removeButtonSelector, likeSelector} = cardConfig;
-    this._element.querySelector(removeButtonSelector).addEventListener('click', this._handleRemoveCard);
+    const removeButton = this._element.querySelector(removeButtonSelector);
+
+    if (this._isOwner) {
+      removeButton.addEventListener('click', this._handleRemoveCard);
+    } else {
+      removeButton.remove();
+    }
 
     this._likeButton = this._element.querySelector(likeSelector);
 
@@ -48,6 +55,14 @@ export default class Card {
       .content
       .querySelector(listItemSelector)
       .cloneNode(true);
+  }
+
+  set isOwner(bool) {
+    this._isOwner = bool;
+  }
+
+  get isOwner() {
+    return this._isOwner;
   }
 
   generateCard = () => {

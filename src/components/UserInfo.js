@@ -5,8 +5,13 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
+    this._id = data._id;
     this._name.textContent = data.name;
     this._about.textContent = data.about;
+  }
+
+  getId() {
+    return this._id;
   }
 
   getUserInfo() {
