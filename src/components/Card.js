@@ -27,7 +27,10 @@ export default class Card {
   }
 
   _handleRemoveCard = () => {
-    this._onDelete();
+    this._onDelete()
+  }
+
+  remove() {
     this._element.remove();
     this._element = null;
   }
@@ -59,10 +62,6 @@ export default class Card {
 
   set isOwner(bool) {
     this._isOwner = bool;
-  }
-
-  get isOwner() {
-    return this._isOwner;
   }
 
   generateCard = () => {

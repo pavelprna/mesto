@@ -41,15 +41,20 @@ const cardList = api.getInitialCards().then(data => {
     renderer: (item) => {
       const card = new Card(item, cardSelector, {
         viewImage: item => imagePopup.open(item),
-        confirmDelete: item => {
-          confirmPopup.setSubmitAction(item => {
-
-          })
+        confirmDelete: () => {
+          confirmPopup.setSubmitAction((evt) => {
+            evt.preventDefault()
+            api.deleteCard(item._id)
+              .then(() => {
+                card.remove();
+                confirmPopup.close();
+              })
+          });
+          confirmPopup.setEventListeners();
           confirmPopup.open();
         }
       });
       card.isOwner = userInfo.getId() === item.owner._id;
-      console.log(card._isOwner)
       const cardElement = card.generateCard();
       cardSection.addItem(cardElement);
     }
@@ -93,10 +98,26 @@ const { newCardPopupSelector } = newCardPopupConfig;
 const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
   api.createCard(inputValues)
     .then(json => {
-      return new Card(json, cardSelector, item => imagePopup.open(item));
+      const card = new Card(json, cardSelector, {
+        viewImage: json => imagePopup.open(json),
+        confirmDelete: () => {
+          confirmPopup.setSubmitAction((evt) => {
+            evt.preventDefault()
+            api.deleteCard(json._id)
+              .then(() => {
+                card.remove();
+                confirmPopup.close();
+              })
+          });
+          confirmPopup.setEventListeners();
+          confirmPopup.open();
+        }
+      });
+      return card;
     })
     .then(card => {
       cardList.then((section) => {
+        card.isOwner = true;
         section.addItem(card.generateCard());
       })
     })
@@ -114,4 +135,3 @@ newCardButton.addEventListener('click', () => {
 // confirm popup:
 const { confirmPopupSelector } = confirmPopupConfig;
 const confirmPopup = new PopupWithFormSubmit(confirmPopupSelector);
-confirmPopup.setEventListeners()

@@ -6,12 +6,12 @@ export default class PopupWithFormSubmit extends Popup {
   }
 
   setSubmitAction(action) {
-    this._handleSubmitCallback = action;
+    this._handleSubmit = action;
   }
 
-  _handleSubmit(evt) {
-    evt.preventDefault();
-    this._handleSubmitCallback();
+  close() {
+    super.close();
+    this._popup.removeEventListener('submit', this._handleSubmit)
   }
 
   setEventListeners() {

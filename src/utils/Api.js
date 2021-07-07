@@ -47,6 +47,13 @@ class Api {
       body: JSON.stringify(data),
     });
   }
+
+  deleteCard(cardId) {
+    return this._request({
+      method: 'DELETE',
+      path: `cards/${cardId}`,
+    })
+  }
 }
 
 export const api = new Api({
