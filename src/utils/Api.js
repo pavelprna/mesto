@@ -52,7 +52,21 @@ class Api {
     return this._request({
       method: 'DELETE',
       path: `cards/${cardId}`,
-    })
+    });
+  }
+
+  likeCard(cardId) {
+    return this._request({
+      method: 'PUT',
+      path: `cards/likes/${cardId}`,
+    });
+  }
+
+  unlikeCard(cardId) {
+    return this._request({
+      method: 'DELETE',
+      path: `cards/likes/${cardId}`,
+    });
   }
 }
 

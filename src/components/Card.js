@@ -8,7 +8,9 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._onClick = callbacks.viewImage;
     this._onDelete = callbacks.confirmDelete;
+    this._onLike = callbacks.likeHandler
     this._likes = data.likes;
+    this._isLiked = false;
     this._isOwner = false;
   }
 
@@ -22,12 +24,24 @@ export default class Card {
   }
 
   _handleLikeCard = () => {
+    this._onLike()
+    console.log(this._onLike)
     const { activeLikeClass } = cardConfig;
     this._likeButton.classList.toggle(activeLikeClass);
+    this._isLiked = !this._isLiked
   }
 
   _handleRemoveCard = () => {
     this._onDelete()
+  }
+
+  checkIsLiked(userId) {
+    for (let i = 0; i < this._likes.length; i++) {
+      if (this._likes[i]._id === userId) {
+        this._isLiked = true;
+        break;
+      }
+    }
   }
 
   remove() {
@@ -36,7 +50,7 @@ export default class Card {
   }
 
   _setEventListeners = () => {
-    const { removeButtonSelector, likeSelector} = cardConfig;
+    const { removeButtonSelector } = cardConfig;
     const removeButton = this._element.querySelector(removeButtonSelector);
 
     if (this._isOwner) {
@@ -44,8 +58,6 @@ export default class Card {
     } else {
       removeButton.remove();
     }
-
-    this._likeButton = this._element.querySelector(likeSelector);
 
     this._likeButton.addEventListener('click', this._handleLikeCard);
     this._elementImage.addEventListener('click', this._handleOnClick);
@@ -64,10 +76,20 @@ export default class Card {
     this._isOwner = bool;
   }
 
+  get liked() {
+    return this._isLiked;
+  }
+
+  setLikes(likes) {
+    console.log(likes)
+    this._likeCounter.textContent = likes.length;
+  }
+
   generateCard = () => {
-    const { imageSelector, titleSelector, likeCounterSelector } = cardConfig;
+    const { imageSelector, titleSelector, likeSelector, likeCounterSelector, activeLikeClass } = cardConfig;
 
     this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector(likeSelector);
     this._elementImage = this._element.querySelector(imageSelector);
 
     this._elementImage.src = this._image;
@@ -75,7 +97,11 @@ export default class Card {
     this._element.querySelector(titleSelector).textContent = this._name;
 
     this._likeCounter = this._element.querySelector(likeCounterSelector);
-    this._likeCounter.textContent = this._likes.length;
+    this.setLikes(this._likes)
+
+    if (this._isLiked) {
+      this._likeButton.classList.add(activeLikeClass)
+    }
 
     this._setEventListeners();
 

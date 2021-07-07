@@ -52,9 +52,23 @@ const cardList = api.getInitialCards().then(data => {
           });
           confirmPopup.setEventListeners();
           confirmPopup.open();
+        },
+        likeHandler: () => {
+          if (card.liked) {
+            api.unlikeCard(item._id)
+              .then(json => {
+                card.setLikes(json.likes)
+              })
+          } else {
+            api.likeCard(item._id)
+              .then(json => {
+                card.setLikes(json.likes)
+              })
+          }
         }
       });
       card.isOwner = userInfo.getId() === item.owner._id;
+      card.checkIsLiked(userInfo.getId());
       const cardElement = card.generateCard();
       cardSection.addItem(cardElement);
     }
@@ -111,6 +125,19 @@ const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
           });
           confirmPopup.setEventListeners();
           confirmPopup.open();
+        },
+        likeHandler: () => {
+          if (card.liked) {
+            api.unlikeCard(json._id)
+              .then(likes => {
+                card.setLikes(likes)
+              })
+          } else {
+            api.likeCard(json._id)
+              .then(likes => {
+                card.setLikes(likes)
+              })
+          }
         }
       });
       return card;
