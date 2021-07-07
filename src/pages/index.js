@@ -118,7 +118,7 @@ const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
     .then(card => {
       cardList.then((section) => {
         card.isOwner = true;
-        section.addItem(card.generateCard());
+        section.addItem(card.generateCard(), 'prepend');
       })
     })
 
