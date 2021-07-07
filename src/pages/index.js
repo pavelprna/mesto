@@ -1,14 +1,16 @@
 import './index.css';
 import {
-  formConfig,
+  avatarButton,
+  avatarPopupConfig,
   cardConfig,
-  popupWithImageConfig,
-  newCardPopupConfig,
-  profilePopupConfig,
   confirmPopupConfig,
-  profileConfig,
+  formConfig,
+  newCardButton,
+  newCardPopupConfig,
+  popupWithImageConfig,
   profileButton,
-  newCardButton
+  profileConfig,
+  profilePopupConfig
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -22,14 +24,17 @@ import PopupWithFormSubmit from "../components/PopupWithFormSubmit.js";
 // enable validation for all forms:
 const profileValidator = new FormValidator(formConfig, profilePopupConfig.profileForm);
 profileValidator.enableValidation();
+const avatarValidator = new FormValidator(formConfig, avatarPopupConfig.form);
+avatarValidator.enableValidation();
 const newCardValidator = new FormValidator(formConfig, newCardPopupConfig.newCardForm);
 newCardValidator.enableValidation();
 
 // user info:
-const { userNameSelector, userAboutSelector } = profileConfig;
-const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+const userInfo = new UserInfo(profileConfig);
 api.getUser().then(user => {
   userInfo.setUserInfo(user);
+  userInfo.setAvatar(user);
+  console.log(user)
   return user;
 });
 
@@ -96,6 +101,18 @@ const { imagePopupSelector } = popupWithImageConfig;
 const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
+// avatar popup:
+const avatarPopup = new PopupWithForm(avatarPopupConfig.popupSelector, (inputValue) => {
+  console.log(inputValue)
+  api.changeAvatar(inputValue)
+    .then(user => {
+      userInfo.setAvatar(user);
+      avatarPopup.close();
+    })
+});
+avatarPopup.setEventListeners();
+
+// edit profile button:
 profileButton.addEventListener('click', () => {
   const { name, about } = userInfo.getUserInfo();
   const { userNameInput, userAboutInput } = profilePopupConfig;
@@ -106,6 +123,13 @@ profileButton.addEventListener('click', () => {
   profileValidator.clearInputErrors();
   profilePopup.open();
 });
+
+// change avatar button:
+avatarButton.addEventListener('click', () => {
+  avatarPopupConfig.urlInput.value = userInfo.getAvatar();
+  avatarValidator.clearInputErrors();
+  avatarPopup.open()
+})
 
 // new card popup:
 const { newCardPopupSelector } = newCardPopupConfig;

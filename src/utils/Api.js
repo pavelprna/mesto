@@ -68,6 +68,14 @@ class Api {
       path: `cards/likes/${cardId}`,
     });
   }
+
+  changeAvatar(link) {
+    return this._request({
+      method: 'PATCH',
+      path: 'users/me/avatar',
+      body: JSON.stringify(link),
+    });
+  }
 }
 
 export const api = new Api({

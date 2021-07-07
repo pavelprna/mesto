@@ -32,6 +32,12 @@ export const profilePopupConfig = {
   userAboutInput: document.querySelector('.form__input[name = about]'),
 }
 
+export const avatarPopupConfig = {
+  popupSelector: '.popup_content_avatar',
+  form: document.querySelector('.form[name = avatar-form]'),
+  urlInput: document.querySelector('.form__input[name = avatar]'),
+}
+
 export const newCardPopupConfig = {
   newCardPopupSelector: '.popup_content_new-card',
   newCardForm: document.querySelector('.form[name = add-card-form]')
@@ -39,7 +45,6 @@ export const newCardPopupConfig = {
 
 export const confirmPopupConfig = {
   confirmPopupSelector: '.popup_content_confirmation',
-  formSelector: '.'
 }
 
 export const popupConfig = {
@@ -48,9 +53,11 @@ export const popupConfig = {
 }
 
 export const profileConfig = {
-  userNameSelector: '.profile__title',
-  userAboutSelector: '.profile__subtitle',
+  nameSelector: '.profile__title',
+  aboutSelector: '.profile__subtitle',
+  avatarSelector: '.profile__avatar',
 }
 
+export const avatarButton = document.querySelector('.profile__avatar-button')
 export const profileButton = document.querySelector('.profile__edit-button');
 export const newCardButton = document.querySelector('.profile__add-button');

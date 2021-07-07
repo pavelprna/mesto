@@ -25,7 +25,6 @@ export default class Card {
 
   _handleLikeCard = () => {
     this._onLike()
-    console.log(this._onLike)
     const { activeLikeClass } = cardConfig;
     this._likeButton.classList.toggle(activeLikeClass);
     this._isLiked = !this._isLiked
@@ -81,7 +80,6 @@ export default class Card {
   }
 
   setLikes(likes) {
-    console.log(likes)
     this._likeCounter.textContent = likes.length;
   }
 
