@@ -34,7 +34,6 @@ const userInfo = new UserInfo(profileConfig);
 api.getUser().then(user => {
   userInfo.setUserInfo(user);
   userInfo.setAvatar(user);
-  console.log(user)
   return user;
 });
 
@@ -103,7 +102,6 @@ imagePopup.setEventListeners();
 
 // avatar popup:
 const avatarPopup = new PopupWithForm(avatarPopupConfig.popupSelector, (inputValue) => {
-  console.log(inputValue)
   api.changeAvatar(inputValue)
     .then(user => {
       userInfo.setAvatar(user);
