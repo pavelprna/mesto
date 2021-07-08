@@ -13,6 +13,7 @@ export default class UserInfo {
     this._id = data._id;
     this._name.textContent = data.name;
     this._about.textContent = data.about;
+    this._avatar.alt = data.name;
   }
 
   setAvatar(data) {

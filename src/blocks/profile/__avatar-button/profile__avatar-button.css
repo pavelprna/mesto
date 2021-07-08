@@ -1,4 +1,5 @@
 .profile__avatar-button {
+  background: none;
   position: relative;
   border-radius: 50%;
   width: 120px;
