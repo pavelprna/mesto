@@ -33,7 +33,7 @@
 .popup_content_place-image{background:rgba(0,0,0,.9)}
 .form__title{font-size:18px;font-weight:900;line-height:1.21;margin:0 0 66px}@media (min-width:768px){.form__title{font-size:24px;margin:0 0 38px}}
 .form__label{display:block;min-height:73px}
-.form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);display:block;font-family:inherit;font-size:14px;line-height:1.21;padding:10px 0;width:100%}.form__input:focus{outline:none}
+.form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);border-radius:0;display:block;font-family:inherit;font-size:14px;line-height:1.21;padding:10px 0;width:100%}.form__input:focus{outline:none}
 .form__input_type_error{border-bottom:1px solid red}
 .form__input-error{color:red;display:none;font-size:12px;line-height:1.25;margin:5px 0 0}
 .form__input-error_visible{display:inline-block}
