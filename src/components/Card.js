@@ -12,6 +12,8 @@ export default class Card {
     this._likes = data.likes;
     this._isLiked = false;
     this._isOwner = false;
+    this._currentUser = null;
+    this._ownerId = data.owner._id;
   }
 
   _handleOnClick = () => {
@@ -34,9 +36,9 @@ export default class Card {
     this._onDelete()
   }
 
-  checkIsLiked(userId) {
+  _checkIsLiked() {
     for (let i = 0; i < this._likes.length; i++) {
-      if (this._likes[i]._id === userId) {
+      if (this._likes[i]._id === this._currentUser) {
         this._isLiked = true;
         break;
       }
@@ -71,10 +73,11 @@ export default class Card {
       .cloneNode(true);
   }
 
-  set isOwner(bool) {
-    this._isOwner = bool;
+  setCurrentUser(id) {
+    this._currentUser = id;
+    if (id === this._ownerId) this._isOwner = true;
   }
-
+  
   get liked() {
     return this._isLiked;
   }
@@ -96,6 +99,7 @@ export default class Card {
 
     this._likeCounter = this._element.querySelector(likeCounterSelector);
     this.setLikes(this._likes)
+    this._checkIsLiked();
 
     if (this._isLiked) {
       this._likeButton.classList.add(activeLikeClass)

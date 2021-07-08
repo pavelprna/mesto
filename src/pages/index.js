@@ -29,64 +29,65 @@ avatarValidator.enableValidation();
 const newCardValidator = new FormValidator(formConfig, newCardPopupConfig.newCardForm);
 newCardValidator.enableValidation();
 
+function createCard(cardData, currentUserId) {
+  const card =  new Card(cardData, cardSelector, {
+    viewImage: item => imagePopup.open(item),
+    confirmDelete: () => {
+      confirmPopup.setSubmitAction((evt) => {
+        evt.preventDefault()
+        api.deleteCard(cardData._id)
+          .then(() => {
+            card.remove();
+            confirmPopup.close();
+          })
+          .catch(err => console.error(err));
+      });
+      confirmPopup.open();
+    },
+    likeHandler: () => {
+      if (card.liked) {
+        api.unlikeCard(cardData._id)
+          .then(json => {
+            card.setLikes(json.likes)
+          })
+          .catch(err => console.error(err));
+      } else {
+        api.likeCard(cardData._id)
+          .then(json => {
+            card.setLikes(json.likes)
+          })
+          .catch(err => console.error(err));
+      }
+    }
+  });
+  card.setCurrentUser(currentUserId)
+  return card;
+}
+
 // user info:
 const userInfo = new UserInfo(profileConfig);
-api.getUser()
-  .then(user => {
+
+// get initial cards:
+let cardSection;
+const {cardSelector, cardListSection} = cardConfig;
+
+Promise.all([
+  api.getUser(),
+  api.getInitialCards()
+])
+  .then(([user, data]) => {
     userInfo.setUserInfo(user);
     userInfo.setAvatar(user);
-    return user;
-  })
-  .catch(err => console.error(err));
-
-// get initial cards
-const {cardSelector, cardListSection} = cardConfig;
-const cardList = api.getInitialCards()
-  .then(data => {
-    const cardSection = new Section({
+    cardSection = new Section({
       items: data,
       renderer: (item) => {
-        const card = new Card(item, cardSelector, {
-          viewImage: item => imagePopup.open(item),
-          confirmDelete: () => {
-            confirmPopup.setSubmitAction((evt) => {
-              evt.preventDefault()
-              api.deleteCard(item._id)
-                .then(() => {
-                  card.remove();
-                  confirmPopup.close();
-                })
-                .catch(err => console.error(err));
-            });
-            confirmPopup.setEventListeners();
-            confirmPopup.open();
-          },
-          likeHandler: () => {
-            if (card.liked) {
-              api.unlikeCard(item._id)
-                .then(json => {
-                  card.setLikes(json.likes)
-                })
-                .catch(err => console.error(err));
-            } else {
-              api.likeCard(item._id)
-                .then(json => {
-                  card.setLikes(json.likes)
-                })
-                .catch(err => console.error(err));
-            }
-          }
-        });
-        card.isOwner = userInfo.getId() === item.owner._id;
-        card.checkIsLiked(userInfo.getId());
+        const card = createCard(item, userInfo.getId());
         const cardElement = card.generateCard();
         cardSection.addItem(cardElement);
       }
     }, cardListSection);
 
     cardSection.renderItems();
-
-    return cardSection;
   })
   .catch(err => console.error(err));
 
@@ -106,8 +107,7 @@ const profilePopup = new PopupWithForm(profilePopupSelector, (inputValues) => {
 profilePopup.setEventListeners();
 
 // image popup:
-const {imagePopupSelector} = popupWithImageConfig;
-const imagePopup = new PopupWithImage(imagePopupSelector);
+const imagePopup = new PopupWithImage(popupWithImageConfig);
 imagePopup.setEventListeners();
 
 // avatar popup:
@@ -137,7 +137,7 @@ profileButton.addEventListener('click', () => {
 
 // change avatar button:
 avatarButton.addEventListener('click', () => {
-  avatarPopupConfig.urlInput.value = userInfo.getAvatar();
+  avatarPopupConfig.urlInput.value = '';
   avatarValidator.clearInputErrors();
   avatarPopup.open()
 })
@@ -148,44 +148,10 @@ const newCardPopup = new PopupWithForm(newCardPopupSelector, (inputValues) => {
   newCardPopup.renderLoading(true);
   api.createCard(inputValues)
     .then(json => {
-      const card = new Card(json, cardSelector, {
-        viewImage: json => imagePopup.open(json),
-        confirmDelete: () => {
-          confirmPopup.setSubmitAction((evt) => {
-            evt.preventDefault()
-            api.deleteCard(json._id)
-              .then(() => {
-                card.remove();
-                confirmPopup.close();
-              })
-              .catch(err => console.error(err));
-          });
-          confirmPopup.setEventListeners();
-          confirmPopup.open();
-        },
-        likeHandler: () => {
-          if (card.liked) {
-            api.unlikeCard(item._id)
-              .then(json => {
-                card.setLikes(json.likes)
-              })
-              .catch(err => console.error(err));
-          } else {
-            api.likeCard(item._id)
-              .then(json => {
-                card.setLikes(json.likes)
-              })
-              .catch(err => console.error(err));
-          }
-        }
-      });
-      return card;
+      return createCard(json, userInfo.getId())
     })
     .then(card => {
-      cardList.then((section) => {
-        card.isOwner = true;
-        section.addItem(card.generateCard(), 'prepend');
-      });
+      cardSection.addItem(card.generateCard(), 'prepend');
       newCardPopup.close();
       newCardPopup.renderLoading(false)
     })
@@ -202,3 +168,4 @@ newCardButton.addEventListener('click', () => {
 // confirm popup:
 const {confirmPopupSelector} = confirmPopupConfig;
 const confirmPopup = new PopupWithFormSubmit(confirmPopupSelector);
+confirmPopup.setEventListeners();
